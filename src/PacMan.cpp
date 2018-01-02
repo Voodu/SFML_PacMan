@@ -9,6 +9,8 @@ PacMan::PacMan(sf::Color color, Transform transform) : MovableObject(),  color(c
     tag = "PacMan";
     shape = sf::RectangleShape(sf::Vector2f(transform.rect.width, transform.rect.height));
     shape.setFillColor(color);
+    ignoredMoveCollisions.insert(tag);
+    ignoredMoveCollisions.insert("Dot");
 }
 
 PacMan::PacMan(sf::Color color, float size) : PacMan(color, Transform(0, 0, size, size))

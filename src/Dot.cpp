@@ -2,7 +2,7 @@
 
 Dot::Dot(sf::Color color, Transform transform) : color(color)
 {
-    physical = false;
+    physical = true;
     this->transform = transform;
     tag = "Dot";
     shape = sf::RectangleShape(sf::Vector2f(transform.rect.width, transform.rect.height));

@@ -1,12 +1,16 @@
 #include "../include/Ghost.hpp"
 
-Ghost::Ghost(sf::Color color, Transform transform) : MovableObject(),  color(color)
+Ghost::Ghost(sf::Color color, Transform transform) : MovableObject(), color(color)
 {
+    layer = 2;
     physical = true;
     this->transform = transform;
     tag = "Ghost";
     shape = sf::RectangleShape(sf::Vector2f(transform.rect.width, transform.rect.height));
     shape.setFillColor(color);
+    ignoredMoveCollisions.insert(tag);
+    ignoredMoveCollisions.insert("Door");
+    ignoredMoveCollisions.insert("Dot");
 }
 
 Ghost::Ghost(sf::Color color, float size) : Ghost(color, Transform(0, 0, size, size))

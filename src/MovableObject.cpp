@@ -20,21 +20,20 @@ void MovableObject::changeDir(unsigned int keyCode, size_t up, size_t down, size
         nextDir = sf::Vector2f(1 * speed, 0 * speed);
 }
 
+// void outBoundsTeleport()
+// {
+//     
+// }
+
 void MovableObject::move()
 {
-    string_set ss({tag});
-    if (tag == "Ghost")
-    {
-        ss.emplace("Door");
-    }
-
     Transform temp;
-    if (!scene->isColliding(temp = transform.moveBy(nextDir.x, nextDir.y), ss))
+    if (!scene->isColliding(temp = transform.moveBy(nextDir.x, nextDir.y), ignoredMoveCollisions))
     {
         dir = nextDir;
         transform = temp;
     }
-    else if (!scene->isColliding(temp = transform.moveBy(dir.x, dir.y), ss))
+    else if (!scene->isColliding(temp = transform.moveBy(dir.x, dir.y), ignoredMoveCollisions))
     {
         transform = temp;
     }

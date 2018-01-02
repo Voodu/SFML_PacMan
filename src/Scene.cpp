@@ -24,7 +24,7 @@ void Scene::passMessage(std::string idString, std::string message)
     }
 }
 
-void Scene::changeScene(Scene* newScene)
+void Scene::changeScene(Scene *newScene)
 {
     nextScene = newScene;
 }
@@ -82,7 +82,7 @@ void Scene::updatePhysics()
 {
     for (auto physObMain : physicalObjects)
     {
-        if (true) //(physOb->tag == "None") TODO
+        if (triggeringTags.find(physObMain->tag) != triggeringTags.end())
         {
             for (auto physObOther : physicalObjects)
             {

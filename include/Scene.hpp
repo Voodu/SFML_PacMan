@@ -19,7 +19,8 @@ class Scene
 
   protected:
     virtual std::vector<GameObject *> loadGameObjects() = 0; //adding all GO-s //TO OVERRIDE
-                                                             //string_set collidingTags; TODO
+    string_set triggeringTags;
+
   public:
     void addGameObject(GameObject *go);
     void removeGameObject(GameObject *go);
@@ -44,8 +45,8 @@ class Scene
     void updateGameObjectsVector(); //--
     void removeGOs();
     void addGOs();
-    void init();                    //called by engine
-    void act();                     //--
+    void init(); //called by engine
+    void act();  //--
     void sortByLayer();
 };
 
