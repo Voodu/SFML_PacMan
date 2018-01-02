@@ -7,13 +7,14 @@
 class Map : public GameObject
 {
     std::vector< std::vector<char> > charMap;
+    void readFile();
+    void createEntity(size_t row, size_t column);
   public:
     void init(Scene &scene) override;
     void update() override;
     void render() override;
     void onCollision(GameObject *other) override;
     void parseMessage(std::string message) override;
-    void readFile();
 };
 
 #endif // !MAP_HPP
