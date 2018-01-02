@@ -1,4 +1,4 @@
-APPNAME = PacMan
+APPNAME = PacMan.out
 CC=g++
 CFLAGS=-lsfml-graphics -lsfml-window -lsfml-system -g -std=c++17 -Wall -pedantic -Werror
 INDIR = include

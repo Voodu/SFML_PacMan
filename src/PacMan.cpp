@@ -1,8 +1,10 @@
 #include "../include/PacMan.hpp"
+#include "../include/MenuScene.hpp"
 
 PacMan::PacMan(sf::Color color, Transform transform) : MovableObject(),  color(color)
 {
     physical = true;
+    layer = 1;
     this->transform = transform;
     tag = "PacMan";
     shape = sf::RectangleShape(sf::Vector2f(transform.rect.width, transform.rect.height));
@@ -10,6 +12,10 @@ PacMan::PacMan(sf::Color color, Transform transform) : MovableObject(),  color(c
 }
 
 PacMan::PacMan(sf::Color color, float size) : PacMan(color, Transform(0, 0, size, size))
+{
+}
+
+PacMan::PacMan(Transform transform) : PacMan(sf::Color::Green, transform)
 {
 }
 
@@ -25,6 +31,10 @@ void PacMan::update()
         if (event.type == sf::Event::KeyPressed)
         {
             changeDir(event.key.code);
+            // if (event.key.code == sf::Keyboard::Key::Space)
+            // {
+            //     scene->changeScene(new MenuScene());
+            // }
         }
     }
 

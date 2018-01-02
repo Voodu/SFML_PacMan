@@ -2,15 +2,19 @@
 
 Dot::Dot(sf::Color color, Transform transform) : color(color)
 {
-    physical = true;
+    physical = false;
     this->transform = transform;
-    tag = "dot";
+    tag = "Dot";
     shape = sf::RectangleShape(sf::Vector2f(transform.rect.width, transform.rect.height));
     shape.setPosition(transform.rect.left, transform.rect.top);
     shape.setFillColor(color);
 }
 
 Dot::Dot(sf::Color color, float size) : Dot(color, Transform(0, 0, size, size))
+{
+}
+
+Dot::Dot(Transform transform) : Dot(sf::Color::Yellow, transform)
 {
 }
 

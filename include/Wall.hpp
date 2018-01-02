@@ -9,6 +9,7 @@ class Wall : public GameObject
     sf::RectangleShape shape;
     Wall(sf::Color color, float size);
     Wall(sf::Color color, Transform transform);
+    Wall(Transform transform);
     void init(Scene &scene) override;
     void update() override;
     void render() override;

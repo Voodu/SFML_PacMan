@@ -10,6 +10,7 @@ class Dot : public GameObject
     sf::RectangleShape shape;
     Dot(sf::Color color, float size);
     Dot(sf::Color color, Transform transform);
+    Dot(Transform transform);
     void init(Scene &scene) override;
     void update() override;
     void render() override;

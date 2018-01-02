@@ -14,6 +14,10 @@ Wall::Wall(sf::Color color, float size) : Wall(color, Transform(0, 0, size, size
 {
 }
 
+Wall::Wall(Transform transform) : Wall(sf::Color::Blue, transform)
+{
+}
+
 void Wall::init(Scene &scene)
 {
     this->scene = &scene;
