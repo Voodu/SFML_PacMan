@@ -10,7 +10,7 @@ class Wall : public GameObject
     Wall(sf::Color color, float size);
     Wall(sf::Color color, Transform transform);
     Wall(Transform transform);
-    void init(Scene &scene) override;
+    void init() override;
     void update() override;
     void render() override;
     void onCollision(GameObject *other) override;

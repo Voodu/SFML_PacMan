@@ -10,7 +10,7 @@ class Door : public GameObject
     Door(sf::Color color, float size);
     Door(sf::Color color, Transform transform);
     Door(Transform transform);
-    void init(Scene &scene) override;
+    void init() override;
     void update() override;
     void render() override;
     void onCollision(GameObject *other) override;

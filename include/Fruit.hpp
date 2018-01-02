@@ -11,7 +11,7 @@ class Fruit : public GameObject
     Fruit(sf::Color color, float size);
     Fruit(sf::Color color, Transform transform);
     Fruit(Transform transform);
-    void init(Scene &scene) override;
+    void init() override;
     void update() override;
     void render() override;
     void onCollision(GameObject *other) override;

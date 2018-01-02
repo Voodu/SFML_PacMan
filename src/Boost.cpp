@@ -18,9 +18,8 @@ Boost::Boost(Transform transform) : Boost(sf::Color::White, transform)
 {
 }
 
-void Boost::init(Scene &scene)
+void Boost::init()
 {
-    this->scene = &scene;
 }
 
 void Boost::update()

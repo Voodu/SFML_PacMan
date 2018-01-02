@@ -17,9 +17,8 @@ Ghost::Ghost(sf::Color color, float size) : Ghost(color, Transform(0, 0, size, s
 {
 }
 
-void Ghost::init(Scene &scene)
+void Ghost::init()
 {
-    this->scene = &scene;
 }
 
 void Ghost::update()

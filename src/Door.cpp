@@ -18,9 +18,8 @@ Door::Door(Transform transform) : Door(sf::Color::Magenta, transform)
 {
 }
 
-void Door::init(Scene &scene)
+void Door::init()
 {
-    this->scene = &scene;
 }
 
 void Door::update()

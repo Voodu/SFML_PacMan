@@ -56,7 +56,8 @@ void Scene::initGameObjects()
     for (auto object : objects)
     {
         object->id = GameObject::counter++;
-        object->init(*this);
+        object->scene = this;
+        object->init();
         if (object->physical)
         {
             physicalObjects.push_back(object);
@@ -148,9 +149,10 @@ void Scene::addGOs()
         {
             physicalObjects.push_back(addBuffer.top());
         }
-
         objects.push_back(addBuffer.top());
-        objects.back()->init(*this);
+        objects.back()->id = GameObject::counter++;
+        objects.back()->scene = this;
+        objects.back()->init();
         addBuffer.pop();
     }
 }

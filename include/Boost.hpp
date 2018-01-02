@@ -11,7 +11,7 @@ class Boost : public GameObject
     Boost(sf::Color color, float size);
     Boost(sf::Color color, Transform transform);
     Boost(Transform transform);
-    void init(Scene &scene) override;
+    void init() override;
     void update() override;
     void render() override;
     void onCollision(GameObject *other) override;

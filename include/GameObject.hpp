@@ -25,7 +25,7 @@ class GameObject
   protected:
     Transform transform;
     Scene *scene;
-    virtual void init(Scene &scene) = 0;                //TO OVERRIDE
+    virtual void init() = 0;                            //TO OVERRIDE
     virtual void update() = 0;                          //TO OVERRIDE
     virtual void render() = 0;                          //TO OVERRIDE
     virtual void onCollision(GameObject *other) = 0;    //TO OVERRIDE

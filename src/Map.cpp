@@ -11,9 +11,8 @@
 #include <string>
 using namespace std;
 
-void Map::init(Scene &scene)
+void Map::init()
 {
-    this->scene = &scene;
     readFile();
     for (size_t row = 0; row < charMap.size(); row++)
     {

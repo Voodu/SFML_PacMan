@@ -18,9 +18,8 @@ Fruit::Fruit(Transform transform) : Fruit(sf::Color::Red, transform)
 {
 }
 
-void Fruit::init(Scene &scene)
+void Fruit::init()
 {
-    this->scene = &scene;
 }
 
 void Fruit::update()

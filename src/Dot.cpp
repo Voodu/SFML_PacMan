@@ -18,9 +18,8 @@ Dot::Dot(Transform transform) : Dot(sf::Color::Yellow, transform)
 {
 }
 
-void Dot::init(Scene &scene)
+void Dot::init()
 {
-    this->scene = &scene;
 }
 
 void Dot::update()

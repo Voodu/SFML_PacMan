@@ -18,9 +18,8 @@ Wall::Wall(Transform transform) : Wall(sf::Color::Blue, transform)
 {
 }
 
-void Wall::init(Scene &scene)
+void Wall::init()
 {
-    this->scene = &scene;
 }
 
 void Wall::update()

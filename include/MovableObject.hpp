@@ -9,7 +9,7 @@ class MovableObject : public GameObject
     sf::Vector2f dir;
     sf::Vector2f nextDir;
     string_set ignoredMoveCollisions; 
-    void init(Scene &scene) override = 0;
+    void init() override = 0;
     void update() override = 0;
     void render() override = 0;
     void onCollision(GameObject *other) override = 0;

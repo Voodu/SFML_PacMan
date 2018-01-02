@@ -21,9 +21,8 @@ PacMan::PacMan(Transform transform) : PacMan(sf::Color::Green, transform)
 {
 }
 
-void PacMan::init(Scene &scene)
+void PacMan::init()
 {
-    this->scene = &scene;
 }
 
 void PacMan::update()

@@ -11,7 +11,7 @@ class Dot : public GameObject
     Dot(sf::Color color, float size);
     Dot(sf::Color color, Transform transform);
     Dot(Transform transform);
-    void init(Scene &scene) override;
+    void init() override;
     void update() override;
     void render() override;
     void onCollision(GameObject *other) override;
