@@ -5,6 +5,7 @@
 #include "../include/PacMan.hpp"
 #include "../include/Fruit.hpp"
 #include "../include/Boost.hpp"
+#include "../include/Door.hpp"
 
 #include <iostream>
 #include <string>
@@ -43,6 +44,9 @@ void Map::createEntity(size_t row, size_t column)
         break;
     case 'F':
         this->scene->addGameObject(new Fruit(temp.moveTo(column * temp.getWidth(), row * temp.getHeight())));
+        break;
+    case 'D':
+        this->scene->addGameObject(new Door(temp.moveTo(column * temp.getWidth(), row * temp.getHeight())));
         break;
     default:
         break;

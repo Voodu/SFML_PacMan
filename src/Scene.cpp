@@ -1,5 +1,4 @@
 #include "../include/Scene.hpp"
-
 //protected
 
 //public
@@ -60,7 +59,6 @@ void Scene::initGameObjects()
         object->init(*this);
         if (object->physical)
         {
-            std::cout << "Added physical\n";
             physicalObjects.push_back(object);
         }
     }

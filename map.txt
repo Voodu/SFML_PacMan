@@ -10,7 +10,7 @@ x......xx....xx....xx......x
 xxxxxx.xxxxx.xx.xxxxx.xxxxxx
 xxxxxx.xxxxx.xx.xxxxx.xxxxxx
 xxxxxx.xx..........xx.xxxxxx
-xxxxxx.xx.xxx--xxx.xx.xxxxxx
+xxxxxx.xx.xxxDDxxx.xx.xxxxxx
 xxxxxx.xx.xGGGGGGx.xx.xxxxxx
 ..........xGGGGGGx..........
 xxxxxx.xx.xGGGGGGx.xx.xxxxxx
