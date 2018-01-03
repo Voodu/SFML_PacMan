@@ -3,6 +3,7 @@
 #include "GameObject.hpp"
 #include <fstream>
 #include <vector>
+#include <string>
 
 class Map : public GameObject
 {

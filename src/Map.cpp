@@ -6,10 +6,7 @@
 #include "../include/Fruit.hpp"
 #include "../include/Boost.hpp"
 #include "../include/Door.hpp"
-
-#include <iostream>
-#include <string>
-using namespace std;
+#include "../include/Spawn.hpp"
 
 Map::Map()
 {
@@ -58,11 +55,10 @@ void Map::createEntity(size_t row, size_t column)
     case 'x':
         this->scene->addGameObject(new Wall(temp.moveTo(column * temp.getWidth(), row * temp.getHeight())));
         break;
+    case 'P': //intentional lack of break!
+        this->scene->addGameObject(new PacMan(temp.moveTo(column * temp.getWidth(), row * temp.getHeight())));
     case '.':
         this->scene->addGameObject(new Dot(Transform(column * temp.getWidth() + (temp.getWidth() - temp.getWidth() * dotScale) / 2, row * temp.getHeight() + (temp.getHeight() - temp.getHeight() * dotScale) / 2, temp.getWidth() * dotScale, temp.getHeight() * dotScale)));
-        break;
-    case 'P':
-        this->scene->addGameObject(new PacMan(temp.moveTo(column * temp.getWidth(), row * temp.getHeight())));
         break;
     case '0':
         this->scene->addGameObject(new Boost(temp.moveTo(column * temp.getWidth(), row * temp.getHeight())));
@@ -80,12 +76,12 @@ void Map::createEntity(size_t row, size_t column)
 
 void Map::readFile()
 {
-    ifstream mapFile("map.txt", ifstream::in);
-    string line;
+    std::ifstream mapFile("map.txt", std::ifstream::in);
+    std::string line;
     while (mapFile.good())
     {
         getline(mapFile, line);
-        charMap.push_back(vector<char>());
+        charMap.push_back(std::vector<char>());
         for (auto character : line)
         {
             charMap.back().push_back(character);
