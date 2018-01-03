@@ -47,3 +47,8 @@ void MovableObject::outOfBoundsTeleport()
         transform.setX(mapPointer->transform.getRightX());
     }
 }
+
+void MovableObject::init()
+{
+    mapPointer = scene->findObjectByIdString("Map");
+}
