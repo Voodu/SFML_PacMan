@@ -33,6 +33,10 @@ void Dot::render()
 
 void Dot::onCollision(GameObject *other)
 {
+    if (other->tag == "PacMan")
+    {
+        scene->removeGameObject(this);
+    }
 }
 
 void Dot::parseMessage(std::string message)
