@@ -17,13 +17,13 @@ class GameObject
     std::string idString = "None";
     size_t getId() { return id; }
     virtual ~GameObject(){}; //TO OVERRIDE
+    Transform transform;
 
   private:
     static size_t counter;
     size_t id;
 
   protected:
-    Transform transform;
     Scene *scene;
     virtual void init() = 0;                            //TO OVERRIDE
     virtual void update() = 0;                          //TO OVERRIDE
