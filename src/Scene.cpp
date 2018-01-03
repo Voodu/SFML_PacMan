@@ -157,10 +157,8 @@ void Scene::removeGOs()
         if (removeBuffer.top()->physical)
         {
             std::vector<GameObject *>::iterator o = std::find(physicalObjects.begin(), physicalObjects.end(), removeBuffer.top());
-            delete *o;
             physicalObjects.erase(o);
         }
-
         std::vector<GameObject *>::iterator o = std::find(objects.begin(), objects.end(), removeBuffer.top());
         delete *o;
         objects.erase(o);
