@@ -50,6 +50,33 @@ void Scene::draw(sf::Drawable &object)
     window->draw(object);
 }
 
+std::vector<GameObject *> Scene::findObjectsByTag(std::string tag)
+{
+    std::vector<GameObject *> v;
+    for (auto object : objects)
+    {
+        if (object->tag == tag)
+        {
+            v.push_back(object);
+        }
+    }
+
+    return v;
+}
+
+GameObject *Scene::findObjectByIdString(std::string idString)
+{
+    for (auto object : objects)
+    {
+        if (object->idString == idString)
+        {
+            return object;
+        }
+    }
+
+    return nullptr;
+}
+
 //private
 void Scene::initGameObjects()
 {

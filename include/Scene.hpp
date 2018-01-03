@@ -28,6 +28,8 @@ class Scene
     void changeScene(Scene *newScene);
     bool isColliding(Transform &transform, string_set ignoredTags = string_set());
     void draw(sf::Drawable &object);
+    std::vector<GameObject *> findObjectsByTag(std::string tag);
+    GameObject *findObjectByIdString(std::string idString);
     virtual ~Scene();              //TO OVERRIDE
     std::vector<sf::Event> events; //to private and make accessor
 
