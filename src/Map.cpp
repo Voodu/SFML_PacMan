@@ -51,7 +51,6 @@ void Map::createEntity(size_t row, size_t column)
     Transform temp(0, 0, 20, 20);
     switch (charMap[row][column])
     {
-        //TODO add spawnpoints
     case 'x':
         this->scene->addGameObject(new Wall(temp.moveTo(column * temp.getWidth(), row * temp.getHeight())));
         break;
