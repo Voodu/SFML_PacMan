@@ -51,11 +51,12 @@ void Map::createEntity(size_t row, size_t column)
     Transform temp(0, 0, 20, 20);
     switch (charMap[row][column])
     {
-        //TODO add spawnpoints variables
+        //TODO add spawnpoints
     case 'x':
         this->scene->addGameObject(new Wall(temp.moveTo(column * temp.getWidth(), row * temp.getHeight())));
         break;
     case 'P': //intentional lack of break!
+        this->scene->addGameObject(new Spawn(temp.moveTo(column * temp.getWidth(), row * temp.getHeight()), "PacManSpawn"));
         this->scene->addGameObject(new PacMan(temp.moveTo(column * temp.getWidth(), row * temp.getHeight())));
     case '.':
         this->scene->addGameObject(new Dot(Transform(column * temp.getWidth() + (temp.getWidth() - temp.getWidth() * dotScale) / 2, row * temp.getHeight() + (temp.getHeight() - temp.getHeight() * dotScale) / 2, temp.getWidth() * dotScale, temp.getHeight() * dotScale)));
@@ -68,6 +69,9 @@ void Map::createEntity(size_t row, size_t column)
         break;
     case 'D':
         this->scene->addGameObject(new Door(temp.moveTo(column * temp.getWidth(), row * temp.getHeight())));
+        break;
+    case 'G':
+        this->scene->addGameObject(new Spawn(temp.moveTo(column * temp.getWidth(), row * temp.getHeight()), "GhostSpawn"));
         break;
     default:
         break;
