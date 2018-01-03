@@ -17,6 +17,8 @@ class Transform
     float getY() { return rect.top; }
     float getWidth() { return rect.width; }
     float getHeight() { return rect.height; }
+    float getRightX() { return rect.left + rect.width; }
+    float getBottomY() { return rect.top + rect.height; }
     void setX(float x) { rect.left = x; }
     void setY(float y) { rect.top = y; }
     void setWidth(float width) { rect.width = width; }
