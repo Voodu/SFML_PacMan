@@ -9,6 +9,7 @@ class MovableObject : public GameObject
     sf::Vector2f dir;
     sf::Vector2f nextDir;
     string_set ignoredMoveCollisions; 
+    GameObject* mapPointer;
     void init() override = 0;
     void update() override = 0;
     void render() override = 0;
@@ -16,6 +17,7 @@ class MovableObject : public GameObject
     void parseMessage(std::string message) override = 0;
     void changeDir(unsigned int keyCode, size_t up = sf::Keyboard::Key::Up, size_t down = sf::Keyboard::Key::Down, size_t left = sf::Keyboard::Key::Left, size_t right = sf::Keyboard::Key::Right);
     void move();
+    void outOfBoundsTeleport();
 };
 
 #endif // !MOVABLEOBJECT_HPP

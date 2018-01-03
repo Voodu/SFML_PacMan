@@ -5,6 +5,7 @@ MovableObject::MovableObject()
     tag = "MovableObject";
     dir = sf::Vector2f(0, 0);
     nextDir = dir;
+    std::cout << "Added movable\n";
 }
 
 void MovableObject::changeDir(unsigned int keyCode, size_t up, size_t down, size_t left, size_t right)
@@ -20,11 +21,6 @@ void MovableObject::changeDir(unsigned int keyCode, size_t up, size_t down, size
         nextDir = sf::Vector2f(1 * speed, 0 * speed);
 }
 
-// void outBoundsTeleport()
-// {
-//     
-// }
-
 void MovableObject::move()
 {
     Transform temp;
@@ -36,5 +32,25 @@ void MovableObject::move()
     else if (!scene->isColliding(temp = transform.moveBy(dir.x, dir.y), ignoredMoveCollisions))
     {
         transform = temp;
+    }
+
+    outOfBoundsTeleport();
+}
+
+void MovableObject::outOfBoundsTeleport()
+{
+    // std::cout << "transform.getX(): " << transform.getX() << '\n';
+    std::cout << "transform.getRightX(): " << transform.getRightX() << '\n';
+    // std::cout << "mapPointer->transform.getX(): " << mapPointer->transform.getX() << '\n';
+    std::cout << "mapPointer->transform.getRightX(): " << mapPointer->transform.getRightX() << '\n';
+    if (transform.getX() > mapPointer->transform.getRightX())
+    {
+        transform.setX(mapPointer->transform.getX() - transform.getWidth());
+        std::cout <<"1st\n";
+    }
+    else if (transform.getRightX() < mapPointer->transform.getX())
+    {
+        transform.setX(mapPointer->transform.getRightX());
+        std::cout <<"2nd\n";
     }
 }
