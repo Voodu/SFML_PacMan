@@ -17,8 +17,8 @@ Map::Map()
     tag = "Map";
     transform = Transform(0, 0);
     readFile();
-    transform.setHeight(charMap.size());
-    transform.setWidth(charMap.size() > 0 ? charMap.front().size() : 0);
+    transform.setHeight(charMap.size() * 20); //TODO: FIX that 20!!!
+    transform.setWidth(charMap.size() > 0 ? charMap.front().size() * 20 : 0);
 }
 
 void Map::init()
