@@ -24,7 +24,7 @@ PacMan::PacMan(Transform transform) : PacMan(sf::Color::Green, transform)
 
 void PacMan::init()
 {
-    mapPointer = scene->findObjectByIdString("Map");
+    MovableObject::init();
 }
 
 void PacMan::update()
