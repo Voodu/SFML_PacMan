@@ -8,3 +8,8 @@ Inky::Inky(sf::Color color, Transform transform) : Ghost(color, transform)
 Inky::Inky(Transform transform) : Inky(sf::Color::Cyan, transform)
 {
 }
+
+void Inky::findRoute()
+{
+    
+}

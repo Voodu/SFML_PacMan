@@ -8,3 +8,8 @@ Blinky::Blinky(sf::Color color, Transform transform) : Ghost(color, transform)
 Blinky::Blinky(Transform transform) : Blinky(sf::Color::Red, transform)
 {
 }
+
+void Blinky::findRoute()
+{
+    
+}

@@ -8,3 +8,8 @@ Pinky::Pinky(sf::Color color, Transform transform) : Ghost(color, transform)
 Pinky::Pinky(Transform transform) : Pinky(sf::Color(255,192,203), transform)
 {
 }
+
+void Pinky::findRoute()
+{
+    
+}

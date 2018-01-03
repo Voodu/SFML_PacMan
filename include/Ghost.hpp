@@ -8,11 +8,13 @@ class Ghost : public MovableObject
     sf::Color color;
     sf::RectangleShape shape;
     Ghost(sf::Color color, Transform transform);
+    virtual void findRoute() = 0;
     void init() override;
     void update() override;
     void render() override;
     void onCollision(GameObject *other) override;
     void parseMessage(std::string message) override;
+
 };
 
 #endif // !GHOST_CPP

@@ -7,6 +7,7 @@ class Blinky : public Ghost
   public:
     Blinky(sf::Color color, Transform transform);
     Blinky(Transform transform);
+    void findRoute() override;
 };
 
 #endif // !BLINKY_HPP
