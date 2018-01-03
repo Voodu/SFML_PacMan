@@ -17,6 +17,10 @@ class Transform
     float getY() { return rect.top; }
     float getWidth() { return rect.width; }
     float getHeight() { return rect.height; }
+    void setX(float x) { rect.left = x; }
+    void setY(float y) { rect.top = y; }
+    void setWidth(float width) { rect.width = width; }
+    void setHeight(float height) { rect.height = height; }
     Transform moveTo(float x, float y);
     Transform moveBy(float x, float y);
     bool collides(Transform other);
