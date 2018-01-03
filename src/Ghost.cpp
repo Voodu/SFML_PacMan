@@ -13,25 +13,13 @@ Ghost::Ghost(sf::Color color, Transform transform) : MovableObject(), color(colo
     ignoredMoveCollisions.insert("Dot");
 }
 
-Ghost::Ghost(sf::Color color, float size) : Ghost(color, Transform(0, 0, size, size))
-{
-}
-
 void Ghost::init()
 {
+    MovableObject::init();
 }
 
 void Ghost::update()
 {
-    for (auto event : scene->events)
-    {
-        if (event.type == sf::Event::KeyPressed)
-        {
-            //changeDir(event.key.code);
-        }
-    }
-
-    //move();
 }
 
 void Ghost::render()
