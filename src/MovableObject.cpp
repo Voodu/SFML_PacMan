@@ -5,7 +5,6 @@ MovableObject::MovableObject()
     tag = "MovableObject";
     dir = sf::Vector2f(0, 0);
     nextDir = dir;
-    std::cout << "Added movable\n";
 }
 
 void MovableObject::changeDir(unsigned int keyCode, size_t up, size_t down, size_t left, size_t right)

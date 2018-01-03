@@ -34,10 +34,6 @@ void PacMan::update()
         if (event.type == sf::Event::KeyPressed)
         {
             changeDir(event.key.code);
-            // if (event.key.code == sf::Keyboard::Key::Space)
-            // {
-            //     scene->changeScene(new MenuScene());
-            // }
         }
     }
 
@@ -52,6 +48,7 @@ void PacMan::render()
 
 void PacMan::onCollision(GameObject *other)
 {
+    //Add code to add point on collecting dot
 }
 
 void PacMan::parseMessage(std::string message)
