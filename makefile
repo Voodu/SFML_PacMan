@@ -11,7 +11,7 @@ OBJ = $(wildcard $(OBDIR)/*.o)
 
 all: SFML
 
-SFML: $(OBDIR)/main.o $(OBDIR)/Engine.o $(OBDIR)/GameObject.o $(OBDIR)/Scene.o $(OBDIR)/GameScene.o $(OBDIR)/PacMan.o $(OBDIR)/Transform.o $(OBDIR)/Dot.o $(OBDIR)/Wall.o $(OBDIR)/MovableObject.o $(OBDIR)/Ghost.o $(OBDIR)/Map.o $(OBDIR)/MenuScene.o $(OBDIR)/Fruit.o $(OBDIR)/Boost.o $(OBDIR)/Door.o $(OBDIR)/Spawn.o $(OBDIR)/Blinky.o $(OBDIR)/Pinky.o $(OBDIR)/Inky.o $(OBDIR)/Clyde.o
+SFML: $(OBDIR)/main.o $(OBDIR)/Engine.o $(OBDIR)/GameObject.o $(OBDIR)/Scene.o $(OBDIR)/GameScene.o $(OBDIR)/PacMan.o $(OBDIR)/Transform.o $(OBDIR)/Dot.o $(OBDIR)/Wall.o $(OBDIR)/MovableObject.o $(OBDIR)/StaticObject.o $(OBDIR)/Ghost.o $(OBDIR)/Map.o $(OBDIR)/MenuScene.o $(OBDIR)/Fruit.o $(OBDIR)/Boost.o $(OBDIR)/Door.o $(OBDIR)/Spawn.o $(OBDIR)/Blinky.o $(OBDIR)/Pinky.o $(OBDIR)/Inky.o $(OBDIR)/Clyde.o
 	$(CC) $^ -o $(APPNAME) $(CFLAGS) 
 
 $(OBDIR)/%.o: $(SRDIR)/%.cpp $(DEPS)
