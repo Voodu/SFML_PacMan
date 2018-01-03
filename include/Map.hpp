@@ -11,6 +11,7 @@ class Map : public GameObject
     void createEntity(size_t row, size_t column);
 
   public:
+    Map();
     void init() override;
     void update() override;
     void render() override;

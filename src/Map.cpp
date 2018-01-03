@@ -11,9 +11,18 @@
 #include <string>
 using namespace std;
 
+Map::Map()
+{
+    idString = "Map";
+    tag = "Map";
+    transform = Transform(0, 0);
+    readFile();
+    transform.setHeight(charMap.size());
+    transform.setWidth(charMap.size() > 0 ? charMap.front().size() : 0);
+}
+
 void Map::init()
 {
-    readFile();
     for (size_t row = 0; row < charMap.size(); row++)
     {
         for (size_t column = 0; column < charMap[row].size(); column++)
@@ -21,6 +30,22 @@ void Map::init()
             createEntity(row, column);
         }
     }
+}
+
+void Map::update()
+{
+}
+
+void Map::render()
+{
+}
+
+void Map::onCollision(GameObject *other)
+{
+}
+
+void Map::parseMessage(std::string message)
+{
 }
 
 void Map::createEntity(size_t row, size_t column)
@@ -65,20 +90,4 @@ void Map::readFile()
             charMap.back().push_back(character);
         }
     }
-}
-
-void Map::update()
-{
-}
-
-void Map::render()
-{
-}
-
-void Map::onCollision(GameObject *other)
-{
-}
-
-void Map::parseMessage(std::string message)
-{
 }

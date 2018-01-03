@@ -7,6 +7,7 @@ PacMan::PacMan(sf::Color color, Transform transform) : MovableObject(),  color(c
     layer = 1;
     this->transform = transform;
     tag = "PacMan";
+    idString = "PacMan";
     shape = sf::RectangleShape(sf::Vector2f(transform.rect.width, transform.rect.height));
     shape.setFillColor(color);
     ignoredMoveCollisions.insert(tag);
