@@ -39,18 +39,12 @@ void MovableObject::move()
 
 void MovableObject::outOfBoundsTeleport()
 {
-    // std::cout << "transform.getX(): " << transform.getX() << '\n';
-    std::cout << "transform.getRightX(): " << transform.getRightX() << '\n';
-    // std::cout << "mapPointer->transform.getX(): " << mapPointer->transform.getX() << '\n';
-    std::cout << "mapPointer->transform.getRightX(): " << mapPointer->transform.getRightX() << '\n';
     if (transform.getX() > mapPointer->transform.getRightX())
     {
         transform.setX(mapPointer->transform.getX() - transform.getWidth());
-        std::cout <<"1st\n";
     }
     else if (transform.getRightX() < mapPointer->transform.getX())
     {
         transform.setX(mapPointer->transform.getRightX());
-        std::cout <<"2nd\n";
     }
 }
