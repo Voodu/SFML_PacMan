@@ -27,6 +27,7 @@ void MovableObject::changeDir(unsigned int keyCode, size_t up, size_t down, size
 
 void MovableObject::move()
 {
+    moves = true;
     Transform temp;
     if (nextDir != sf::Vector2f(0, 0) && !scene->isColliding(temp = transform.moveBy(nextDir.x, nextDir.y), ignoredMoveCollisions))
     {
@@ -34,9 +35,13 @@ void MovableObject::move()
         transform = temp;
         nextDir = sf::Vector2f(0, 0);
     }
-    else if (!scene->isColliding(temp = transform.moveBy(dir.x, dir.y), ignoredMoveCollisions))
+    else if (dir != sf::Vector2f(0, 0) &&!scene->isColliding(temp = transform.moveBy(dir.x, dir.y), ignoredMoveCollisions))
     {
         transform = temp;
+    }
+    else
+    {
+        moves = false;
     }
 
     outOfBoundsTeleport();
@@ -44,13 +49,13 @@ void MovableObject::move()
 
 void MovableObject::outOfBoundsTeleport()
 {
-    if (transform.getX() > mapPointer->transform.getRightX())
+    if (transform.getX() > mapPointer->transform.getRightX()) //went through right wall
     {
-        transform.setX(mapPointer->transform.getX() - transform.getWidth());
+        transform.setX(mapPointer->transform.getX() - transform.getWidth() + 1);
     }
-    else if (transform.getRightX() < mapPointer->transform.getX())
+    else if (transform.getRightX() < mapPointer->transform.getX()) //went through left wall
     {
-        transform.setX(mapPointer->transform.getRightX());
+        transform.setX(mapPointer->transform.getRightX() - 1);
     }
 }
 

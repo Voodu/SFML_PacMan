@@ -11,6 +11,7 @@ class MovableObject : public GameObject
     sf::Vector2f nextDir;
     string_set ignoredMoveCollisions; 
     GameObject* mapPointer;
+    bool moves;
     void init() override;
     void update() override = 0;
     void render() override = 0;
