@@ -6,6 +6,7 @@ class MovableObject : public GameObject
 {
   protected:
     MovableObject();
+    MovableObject(Transform& transform);
     sf::Vector2f dir;
     sf::Vector2f nextDir;
     string_set ignoredMoveCollisions; 

@@ -1,8 +1,13 @@
 #include "../include/MovableObject.hpp"
 
-MovableObject::MovableObject()
+MovableObject::MovableObject() 
 {
-    tag = "MovableObject";
+    dir = sf::Vector2f(0, 0);
+    nextDir = dir;
+}
+
+MovableObject::MovableObject(Transform& transform) : GameObject(transform)
+{
     dir = sf::Vector2f(0, 0);
     nextDir = dir;
 }
