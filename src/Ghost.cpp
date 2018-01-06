@@ -1,10 +1,9 @@
 #include "../include/Ghost.hpp"
 
-Ghost::Ghost(sf::Color color, Transform transform) : MovableObject(), color(color)
+Ghost::Ghost(sf::Color color, Transform transform) : MovableObject(transform), color(color)
 {
     layer = 2;
     physical = true;
-    this->transform = transform;
     tag = "Ghost";
     shape = sf::RectangleShape(sf::Vector2f(transform.rect.width, transform.rect.height));
     shape.setFillColor(color);
