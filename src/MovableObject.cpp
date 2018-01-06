@@ -1,20 +1,18 @@
 #include "../include/MovableObject.hpp"
 
-MovableObject::MovableObject()
+MovableObject::MovableObject(Transform transform) : GameObject(transform)
 {
     dir = sf::Vector2f(0, 0);
     nextDir = dir;
+    speed = 4;
 }
 
-MovableObject::MovableObject(Transform &transform) : GameObject(transform)
+MovableObject::MovableObject() : MovableObject(Transform())
 {
-    dir = sf::Vector2f(0, 0);
-    nextDir = dir;
 }
 
 void MovableObject::changeDir(unsigned int keyCode, size_t up, size_t down, size_t left, size_t right)
 {
-    int speed = 4;
     if (keyCode == up)
         nextDir = sf::Vector2f(0 * speed, -1 * speed);
     else if (keyCode == down)
@@ -27,6 +25,7 @@ void MovableObject::changeDir(unsigned int keyCode, size_t up, size_t down, size
 
 void MovableObject::move()
 {
+    outOfBoundsTeleport();
     moves = true;
     Transform temp;
     if (nextDir != sf::Vector2f(0, 0) && !scene->isColliding(temp = transform.moveBy(nextDir.x, nextDir.y), ignoredMoveCollisions))
@@ -35,7 +34,7 @@ void MovableObject::move()
         transform = temp;
         nextDir = sf::Vector2f(0, 0);
     }
-    else if (dir != sf::Vector2f(0, 0) &&!scene->isColliding(temp = transform.moveBy(dir.x, dir.y), ignoredMoveCollisions))
+    else if (dir != sf::Vector2f(0, 0) && !scene->isColliding(temp = transform.moveBy(dir.x, dir.y), ignoredMoveCollisions))
     {
         transform = temp;
     }
@@ -43,19 +42,17 @@ void MovableObject::move()
     {
         moves = false;
     }
-
-    outOfBoundsTeleport();
 }
 
 void MovableObject::outOfBoundsTeleport()
 {
-    if (transform.getX() > mapPointer->transform.getRightX()) //went through right wall
+    if (transform.getX() >= mapPointer->transform.getRightX()) //went through right wall
     {
-        transform.setX(mapPointer->transform.getX() - transform.getWidth() + 1);
+        transform.setX(mapPointer->transform.getX() - transform.getWidth() + speed);
     }
-    else if (transform.getRightX() < mapPointer->transform.getX()) //went through left wall
+    else if (transform.getRightX() <= mapPointer->transform.getX()) //went through left wall
     {
-        transform.setX(mapPointer->transform.getRightX() - 1);
+        transform.setX(mapPointer->transform.getRightX() - speed);
     }
 }
 

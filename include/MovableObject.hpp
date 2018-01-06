@@ -6,12 +6,13 @@ class MovableObject : public GameObject
 {
   protected:
     MovableObject();
-    MovableObject(Transform& transform);
+    MovableObject(Transform transform);
     sf::Vector2f dir;
     sf::Vector2f nextDir;
     string_set ignoredMoveCollisions; 
     GameObject* mapPointer;
     bool moves;
+    int speed;
     void init() override;
     void update() override = 0;
     void render() override = 0;
