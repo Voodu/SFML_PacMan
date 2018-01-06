@@ -7,7 +7,7 @@ class Inky : public Ghost
   public:
     Inky(sf::Color color, Transform transform);
     Inky(Transform transform);
-    void findRoute() = 0;
+    int getNextTurn() override;
 };
 
 #endif // !INKY_HPP

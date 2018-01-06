@@ -7,7 +7,7 @@ class Clyde : public Ghost
   public:
     Clyde(sf::Color color, Transform transform);
     Clyde(Transform transform);
-    void findRoute() = 0;
+    int getNextTurn() override;
 };
 
 #endif // !CLYDE_HPP

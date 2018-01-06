@@ -9,7 +9,7 @@ Inky::Inky(Transform transform) : Inky(sf::Color::Cyan, transform)
 {
 }
 
-void Inky::findRoute()
+int Inky::getNextTurn()
 {
-    
+    return -1;
 }

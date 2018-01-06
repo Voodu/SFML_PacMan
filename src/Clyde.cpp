@@ -9,7 +9,7 @@ Clyde::Clyde(Transform transform) : Clyde(sf::Color(255,127,80), transform)
 {
 }
 
-void Clyde::findRoute()
+int Clyde::getNextTurn()
 {
-    
+    return -1;
 }

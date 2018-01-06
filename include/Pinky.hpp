@@ -7,7 +7,7 @@ class Pinky : public Ghost
   public:
     Pinky(sf::Color color, Transform transform);
     Pinky(Transform transform);
-    void findRoute() = 0;
+    int getNextTurn() override;
 };
 
 #endif // !PINKY_HPP

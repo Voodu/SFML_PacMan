@@ -8,7 +8,7 @@ class Ghost : public MovableObject
     sf::Color color;
     sf::RectangleShape shape;
     Ghost(sf::Color color, Transform transform);
-    virtual void findRoute() = 0;
+    virtual int getNextTurn() = 0;
     void init() override;
     void update() override;
     void render() override;
