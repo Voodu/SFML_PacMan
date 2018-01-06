@@ -1,12 +1,12 @@
 #include "../include/MovableObject.hpp"
 
-MovableObject::MovableObject() 
+MovableObject::MovableObject()
 {
     dir = sf::Vector2f(0, 0);
     nextDir = dir;
 }
 
-MovableObject::MovableObject(Transform& transform) : GameObject(transform)
+MovableObject::MovableObject(Transform &transform) : GameObject(transform)
 {
     dir = sf::Vector2f(0, 0);
     nextDir = dir;
@@ -28,10 +28,11 @@ void MovableObject::changeDir(unsigned int keyCode, size_t up, size_t down, size
 void MovableObject::move()
 {
     Transform temp;
-    if (!scene->isColliding(temp = transform.moveBy(nextDir.x, nextDir.y), ignoredMoveCollisions))
+    if (nextDir != sf::Vector2f(0, 0) && !scene->isColliding(temp = transform.moveBy(nextDir.x, nextDir.y), ignoredMoveCollisions))
     {
         dir = nextDir;
         transform = temp;
+        nextDir = sf::Vector2f(0, 0);
     }
     else if (!scene->isColliding(temp = transform.moveBy(dir.x, dir.y), ignoredMoveCollisions))
     {
