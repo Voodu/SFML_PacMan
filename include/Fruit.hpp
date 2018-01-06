@@ -1,21 +1,14 @@
 #ifndef FRUIT_HPP
 #define FRUIT_HPP
 
-#include "GameObject.hpp"
+#include "StaticObject.hpp"
 
-class Fruit : public GameObject
+class Fruit : public StaticObject
 {
   public:
-    sf::Color color;
-    sf::RectangleShape shape;
-    Fruit(sf::Color color, float size);
     Fruit(sf::Color color, Transform transform);
     Fruit(Transform transform);
-    void init() override;
-    void update() override;
-    void render() override;
     void onCollision(GameObject *other) override;
-    void parseMessage(std::string message) override;
 };
 
 #endif // !FRUIT_HPP

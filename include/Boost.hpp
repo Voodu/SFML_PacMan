@@ -1,21 +1,14 @@
 #ifndef BOOST_HPP
 #define BOOST_HPP
 
-#include "GameObject.hpp"
+#include "StaticObject.hpp"
 
-class Boost : public GameObject
+class Boost : public StaticObject
 {
   public:
-    sf::Color color;
-    sf::RectangleShape shape;
-    Boost(sf::Color color, float size);
     Boost(sf::Color color, Transform transform);
     Boost(Transform transform);
-    void init() override;
-    void update() override;
-    void render() override;
     void onCollision(GameObject *other) override;
-    void parseMessage(std::string message) override;
 };
 
 #endif // !BOOST_HPP

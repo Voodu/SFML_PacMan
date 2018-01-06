@@ -1,20 +1,12 @@
 #ifndef DOOR_HPP
 #define DOOR_HPP
-#include "GameObject.hpp"
+#include "StaticObject.hpp"
 
-class Door : public GameObject
+class Door : public StaticObject
 {
   public:
-    sf::Color color;
-    sf::RectangleShape shape;
-    Door(sf::Color color, float size);
     Door(sf::Color color, Transform transform);
     Door(Transform transform);
-    void init() override;
-    void update() override;
-    void render() override;
-    void onCollision(GameObject *other) override;
-    void parseMessage(std::string message) override;
 };
 
 #endif // !DOOR_HPP
