@@ -22,7 +22,7 @@ void Ghost::init()
 
 void Ghost::update()
 {
-    if (nextDir == sf::Vector2f(0, 0))
+    if (!moves || nextDir == sf::Vector2f(0, 0))
     {
         changeDir(getNextTurn());
     }
