@@ -11,6 +11,16 @@ MovableObject::MovableObject() : MovableObject(Transform())
 {
 }
 
+sf::Vector2f MovableObject::getDir()
+{
+    return dir;
+}
+
+sf::Vector2f MovableObject::getNextDir()
+{
+    return nextDir;
+}
+
 void MovableObject::changeDir(unsigned int keyCode, size_t up, size_t down, size_t left, size_t right)
 {
     if (keyCode == up)
@@ -21,6 +31,11 @@ void MovableObject::changeDir(unsigned int keyCode, size_t up, size_t down, size
         nextDir = sf::Vector2f(-1 * speed, 0 * speed);
     else if (keyCode == right)
         nextDir = sf::Vector2f(1 * speed, 0 * speed);
+}
+
+void MovableObject::changeDir(sf::Vector2f dir)
+{
+    nextDir = dir;
 }
 
 void MovableObject::move()
