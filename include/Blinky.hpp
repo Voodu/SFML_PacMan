@@ -1,11 +1,12 @@
 #ifndef BLINKY_HPP
 #define BLINKY_HPP
 #include "Ghost.hpp"
-#include <queue>
+#include <ctime>
+#include <cstdlib>
 
 class Blinky : public Ghost
 {
-    std::queue<int> directions;
+    std::vector<int> directions;
   public:
     Blinky(sf::Color color, Transform transform);
     Blinky(Transform transform);
