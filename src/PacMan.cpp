@@ -13,6 +13,7 @@ PacMan::PacMan(sf::Color color, Transform transform) : MovableObject(transform),
     ignoredMoveCollisions.insert("Dot");
     ignoredMoveCollisions.insert("Fruit");
     ignoredMoveCollisions.insert("Boost");
+    ignoredMoveCollisions.insert("Ghost");
 }
 
 PacMan::PacMan(Transform transform) : PacMan(sf::Color::Green, transform)
@@ -46,6 +47,10 @@ void PacMan::render()
 void PacMan::onCollision(GameObject *other)
 {
     //Add code to add point on collecting dot
+    if (other->tag == "Ghost")
+    {
+        std::cout << "Ghooooost!\n";
+    }
 }
 
 void PacMan::parseMessage(std::string message)
