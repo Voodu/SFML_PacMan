@@ -4,7 +4,6 @@
 GameScene::GameScene() : Scene()
 {
     triggeringTags.insert("PacMan");
-    triggeringTags.insert("Ghost");
 }
 
 std::vector<GameObject *> GameScene::loadGameObjects()
