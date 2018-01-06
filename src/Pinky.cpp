@@ -9,7 +9,7 @@ Pinky::Pinky(Transform transform) : Pinky(sf::Color(255,192,203), transform)
 {
 }
 
-void Pinky::findRoute()
+int Pinky::getNextTurn()
 {
-    
+    return -1;
 }
