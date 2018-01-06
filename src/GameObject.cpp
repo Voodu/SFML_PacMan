@@ -5,7 +5,7 @@ GameObject::GameObject()
 
 }
 
-GameObject::GameObject(Transform &transform)
+GameObject::GameObject(Transform transform)
 {
     this->transform = transform;
 }

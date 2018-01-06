@@ -10,7 +10,7 @@ class GameObject
 
   public:
     GameObject();
-    GameObject(Transform &transform);
+    GameObject(Transform transform);
     bool enabled = true;
     bool physical = false; //to private & make accessors (setter! must remove from physObj in scene)
     size_t layer = 0;      //to private & make accessors (setter! must re-sort in scene)
