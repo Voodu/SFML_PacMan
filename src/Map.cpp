@@ -7,15 +7,23 @@
 #include "../include/Boost.hpp"
 #include "../include/Door.hpp"
 #include "../include/Spawn.hpp"
+#include "../include/Blinky.hpp"
+#include "../include/Pinky.hpp"
+#include "../include/Inky.hpp"
+#include "../include/Clyde.hpp"
 
 Map::Map()
 {
     idString = "Map";
     tag = "Map";
     transform = Transform(0, 0);
+    ghosts.push(new Blinky(Transform(0, 0, tileSize, tileSize)));
+    ghosts.push(new Pinky(Transform(0, 0, tileSize, tileSize)));
+    ghosts.push(new Inky(Transform(0, 0, tileSize, tileSize)));
+    ghosts.push(new Clyde(Transform(0, 0, tileSize, tileSize)));
     readFile();
-    transform.setHeight(charMap.size() * 20); //TODO: FIX that 20!!!
-    transform.setWidth(charMap.size() > 0 ? charMap.front().size() * 20 : 0);
+    transform.setHeight(charMap.size() * tileSize);
+    transform.setWidth(charMap.size() > 0 ? charMap.front().size() * tileSize : 0);
 }
 
 void Map::init()
@@ -70,7 +78,13 @@ void Map::createEntity(size_t row, size_t column)
         this->scene->addGameObject(new Door(temp.moveTo(column * temp.getWidth(), row * temp.getHeight())));
         break;
     case 'G':
-        this->scene->addGameObject(new Spawn(temp.moveTo(column * temp.getWidth(), row * temp.getHeight()), "GhostSpawn"));
+        if (!ghosts.empty())
+        {
+            ghosts.top()->transform = temp.moveTo(column * temp.getWidth(), row * temp.getHeight());
+            this->scene->addGameObject(new Spawn(temp.moveTo(column * temp.getWidth(), row * temp.getHeight()), ghosts.top()->idString + "Spawn"));
+            this->scene->addGameObject(ghosts.top());
+            ghosts.pop();
+        }
         break;
     default:
         break;
