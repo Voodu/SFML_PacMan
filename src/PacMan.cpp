@@ -1,21 +1,18 @@
 #include "../include/PacMan.hpp"
 #include "../include/MenuScene.hpp"
 
-PacMan::PacMan(sf::Color color, Transform transform) : MovableObject(),  color(color)
+PacMan::PacMan(sf::Color color, Transform transform) : MovableObject(transform),  color(color)
 {
     physical = true;
     layer = 1;
-    this->transform = transform;
     tag = "PacMan";
     idString = "PacMan";
     shape = sf::RectangleShape(sf::Vector2f(transform.rect.width, transform.rect.height));
     shape.setFillColor(color);
     ignoredMoveCollisions.insert(tag);
     ignoredMoveCollisions.insert("Dot");
-}
-
-PacMan::PacMan(sf::Color color, float size) : PacMan(color, Transform(0, 0, size, size))
-{
+    ignoredMoveCollisions.insert("Fruit");
+    ignoredMoveCollisions.insert("Boost");
 }
 
 PacMan::PacMan(Transform transform) : PacMan(sf::Color::Green, transform)
