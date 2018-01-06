@@ -10,6 +10,9 @@ Ghost::Ghost(sf::Color color, Transform transform) : MovableObject(transform), c
     ignoredMoveCollisions.insert(tag);
     ignoredMoveCollisions.insert("Door");
     ignoredMoveCollisions.insert("Dot");
+    ignoredMoveCollisions.insert("Boost");
+    ignoredMoveCollisions.insert("Fruit");
+    ignoredMoveCollisions.insert("PacMan");
 }
 
 void Ghost::init()
@@ -19,6 +22,12 @@ void Ghost::init()
 
 void Ghost::update()
 {
+    if (nextDir == sf::Vector2f(0, 0))
+    {
+        changeDir(getNextTurn());
+    }
+
+    move();
 }
 
 void Ghost::render()
