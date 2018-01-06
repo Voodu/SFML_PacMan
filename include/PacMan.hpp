@@ -9,7 +9,6 @@ class PacMan : public MovableObject
   public:
     sf::Color color;
     sf::RectangleShape shape;
-    PacMan(sf::Color color, float size);
     PacMan(sf::Color color, Transform transform);
     PacMan(Transform transform);
     void init() override;
