@@ -8,7 +8,6 @@ class Text : public GameObject
   public:
     sf::Font font;
     sf::Text text;
-    int score;
     Text(sf::Color color, Transform transform);
     Text(Transform transform);
     void init() override;

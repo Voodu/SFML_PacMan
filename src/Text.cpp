@@ -8,9 +8,8 @@ Text::Text(sf::Color color, Transform transform) : GameObject(transform)
     }
     tag = "Text";
     layer = 999;
-    score = 0;
     text.setFont(font);
-    text.setCharacterSize(20); // in pixels, not points!
+    text.setCharacterSize(15); // in pixels, not points!
     text.setColor(color);
     text.setPosition(transform.getX(), transform.getY());
 }
@@ -38,8 +37,4 @@ void Text::onCollision(GameObject *other)
 
 void Text::parseMessage(std::string message)
 {
-    if (message == "addPoint")
-    {
-        text.setString("Score: " + std::to_string(++score));
-    }
 }
