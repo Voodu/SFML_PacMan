@@ -13,6 +13,7 @@ void Dot::onCollision(GameObject *other)
 {
     if (other->tag == "PacMan")
     {
+        scene->passMessage("Score", "addPoint");
         scene->removeGameObject(this);
     }
 }
