@@ -92,7 +92,6 @@ void Map::createEntity(size_t row, size_t column)
         }
         break;
     default:
-        std::cout << "default\n";
         break;
     }
 }
