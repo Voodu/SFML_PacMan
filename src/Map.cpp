@@ -11,6 +11,7 @@
 #include "../include/Pinky.hpp"
 #include "../include/Inky.hpp"
 #include "../include/Clyde.hpp"
+#include "../include/ScoreText.hpp"
 
 Map::Map()
 {
@@ -19,8 +20,8 @@ Map::Map()
     transform = Transform(0, 0);
     ghosts.push(new Blinky(Transform(0, 0, tileSize, tileSize)));
     ghosts.push(new Pinky(Transform(0, 0, tileSize, tileSize)));
-    ghosts.push(new Inky(Transform(0, 0, tileSize, tileSize)));
-    ghosts.push(new Clyde(Transform(0, 0, tileSize, tileSize)));
+    // ghosts.push(new Inky(Transform(0, 0, tileSize, tileSize)));
+    // ghosts.push(new Clyde(Transform(0, 0, tileSize, tileSize)));
     readFile();
     transform.setHeight(charMap.size() * tileSize);
     transform.setWidth(charMap.size() > 0 ? charMap.front().size() * tileSize : 0);
@@ -56,7 +57,7 @@ void Map::parseMessage(std::string message)
 void Map::createEntity(size_t row, size_t column)
 {
     const float dotScale = 0.25; //TODO move it higher
-    Transform temp(0, 0, 20, 20);
+    Transform temp(transform.getX(), transform.getY(), 20, 20);
     switch (charMap[row][column])
     {
     case 'x':
@@ -77,6 +78,10 @@ void Map::createEntity(size_t row, size_t column)
     case 'D':
         this->scene->addGameObject(new Door(temp.moveTo(column * temp.getWidth(), row * temp.getHeight())));
         break;
+    case 'S':
+        this->scene->addGameObject(new Wall(temp.moveTo(column * temp.getWidth(), row * temp.getHeight())));
+        this->scene->addGameObject(new ScoreText(temp.moveTo(column * temp.getWidth(), row * temp.getHeight())));
+        break;
     case 'G':
         if (!ghosts.empty())
         {
@@ -87,6 +92,7 @@ void Map::createEntity(size_t row, size_t column)
         }
         break;
     default:
+        std::cout << "default\n";
         break;
     }
 }
@@ -97,7 +103,7 @@ void Map::readFile()
     std::string line;
     while (mapFile.good())
     {
-        getline(mapFile, line);
+        mapFile >> line;
         charMap.push_back(std::vector<char>());
         for (auto character : line)
         {
