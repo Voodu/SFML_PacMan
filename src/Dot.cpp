@@ -11,8 +11,8 @@ Dot::Dot(Transform transform) : Dot(sf::Color::Yellow, transform)
 
 void Dot::onCollision(GameObject *other)
 {
-    // if (other->tag == "PacMan")
-    // {
-    //     scene->removeGameObject(this);
-    // }
+    if (other->tag == "PacMan")
+    {
+        scene->removeGameObject(this);
+    }
 }
