@@ -3,7 +3,8 @@
 ScoreText::ScoreText(sf::Color color, Transform transform) : Text(transform)
 {
     score = 0;
-    idString = "Score";
+    idString = "ScoreText";
+    text.setString("Score: " + std::to_string(score));
 }
 
 ScoreText::ScoreText(Transform transform) : ScoreText(sf::Color::White, transform)
