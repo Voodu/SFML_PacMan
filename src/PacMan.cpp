@@ -4,7 +4,7 @@
 PacMan::PacMan(sf::Color color, Transform transform) : MovableObject(transform), color(color)
 {
     physical = true;
-    boosted = false;
+    boosted = 0;
     layer = 1;
     tag = "PacMan";
     idString = "PacMan";
@@ -52,7 +52,7 @@ void PacMan::render()
 
 void PacMan::onCollision(GameObject *other)
 {
-    if (other->tag == "Ghost" && !boosted)
+    if (!boosted && other->tag == "Ghost")
     {
         scene->passMessage("LifesText", "LoseLife");
         scene->removeGameObject(this);
@@ -66,8 +66,20 @@ void PacMan::onCollision(GameObject *other)
         scene->passMessage("ScoreText", "AddPoint");
         return;
     }
+
+    if (other->tag == "Boost")
+    {
+        scene->passMessages("Ghost", "PacManBoosted");
+        ++boosted;
+        return;
+    }
 }
 
 void PacMan::parseMessage(std::string message)
 {
+    if (message == "BoostVanished")
+    {
+        --boosted;
+        std::cout << "Boosts: " << boosted << '\n';
+    }
 }

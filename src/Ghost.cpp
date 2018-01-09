@@ -58,5 +58,21 @@ void Ghost::parseMessage(std::string message)
     {
         scene->removeGameObject(this);
         scene->passMessage(idString + "Spawn", "Respawn");
+        return;
+    }
+    if (message == "PacManBoosted")
+    {
+        std::cout << "PacManBoosted\n";
+        return;
+    }
+    if (message == "BoostVanishing")
+    {
+        std::cout << "BoostVanishing\n";
+        return;
+    }
+    if (message == "BoostVanished")
+    {
+        std::cout << "BoostVanished\n";
+        return;
     }
 }
