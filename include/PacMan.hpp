@@ -9,7 +9,7 @@ class PacMan : public MovableObject
   public:
     sf::Color color;
     sf::RectangleShape shape;
-    bool boosted;
+    int boosted;
     PacMan(sf::Color color, Transform transform);
     PacMan(Transform transform);
     void init() override;
