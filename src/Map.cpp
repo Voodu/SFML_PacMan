@@ -1,27 +1,14 @@
 #include "../include/Map.hpp"
-#include "../include/Dot.hpp"
-#include "../include/Wall.hpp"
-#include "../include/Transform.hpp"
-#include "../include/PacMan.hpp"
-#include "../include/Fruit.hpp"
-#include "../include/Boost.hpp"
-#include "../include/Door.hpp"
-#include "../include/Spawn.hpp"
-#include "../include/Blinky.hpp"
-#include "../include/Pinky.hpp"
-#include "../include/Inky.hpp"
-#include "../include/Clyde.hpp"
-#include "../include/ScoreText.hpp"
 
 Map::Map()
 {
     idString = "Map";
     tag = "Map";
     transform = Transform(0, 0);
-    ghosts.push(new Blinky(Transform(0, 0, tileSize, tileSize)));
-    ghosts.push(new Pinky(Transform(0, 0, tileSize, tileSize)));
-    // ghosts.push(new Inky(Transform(0, 0, tileSize, tileSize)));
-    // ghosts.push(new Clyde(Transform(0, 0, tileSize, tileSize)));
+    ghostSpawns.push(new Spawn(Transform(0, 0), Blinky::factory, "BlinkySpawn"));
+    ghostSpawns.push(new Spawn(Transform(0, 0), Pinky::factory, "PinkySpawn"));
+    // ghostSpawns.push(new Inky(Transform(0, 0, tileSize, tileSize)));
+    // ghostSpawns.push(new Clyde(Transform(0, 0, tileSize, tileSize)));
     readFile();
     transform.setHeight(charMap.size() * tileSize);
     transform.setWidth(charMap.size() > 0 ? charMap.front().size() * tileSize : 0);
@@ -36,6 +23,10 @@ void Map::init()
             createEntity(row, column);
         }
     }
+}
+
+void Map::start()
+{
 }
 
 void Map::update()
@@ -57,38 +48,39 @@ void Map::parseMessage(std::string message)
 void Map::createEntity(size_t row, size_t column)
 {
     const float dotScale = 0.25; //TODO move it higher
-    Transform temp(transform.getX(), transform.getY(), 20, 20);
+    Transform temp(transform.getX(), transform.getY(), tileSize, tileSize);
+    int xOffset = column * temp.getWidth();
+    int yOffset = row * temp.getHeight();
     switch (charMap[row][column])
     {
     case 'x':
-        this->scene->addGameObject(new Wall(temp.moveTo(column * temp.getWidth(), row * temp.getHeight())));
+        this->scene->addGameObject(new Wall(temp.moveTo(xOffset, yOffset)));
         break;
     case 'P': //intentional lack of break!
-        this->scene->addGameObject(new Spawn(temp.moveTo(column * temp.getWidth(), row * temp.getHeight()), "PacManSpawn"));
-        this->scene->addGameObject(new PacMan(temp.moveTo(column * temp.getWidth(), row * temp.getHeight())));
+        this->scene->addGameObject(new Spawn(temp.moveTo(xOffset, yOffset), PacMan::factory, "PacManSpawn"));
+        // this->scene->addGameObject(new PacMan(temp.moveTo(xOffset, yOffset)));
     case '.':
-        this->scene->addGameObject(new Dot(Transform(column * temp.getWidth() + (temp.getWidth() - temp.getWidth() * dotScale) / 2, row * temp.getHeight() + (temp.getHeight() - temp.getHeight() * dotScale) / 2, temp.getWidth() * dotScale, temp.getHeight() * dotScale)));
+        this->scene->addGameObject(new Dot(Transform(xOffset + (temp.getWidth() - temp.getWidth() * dotScale) / 2, yOffset + (temp.getHeight() - temp.getHeight() * dotScale) / 2, temp.getWidth() * dotScale, temp.getHeight() * dotScale)));
         break;
     case '0':
-        this->scene->addGameObject(new Boost(temp.moveTo(column * temp.getWidth(), row * temp.getHeight())));
+        this->scene->addGameObject(new Boost(temp.moveTo(xOffset, yOffset)));
         break;
     case 'F':
-        this->scene->addGameObject(new Fruit(temp.moveTo(column * temp.getWidth(), row * temp.getHeight())));
+        this->scene->addGameObject(new Fruit(temp.moveTo(xOffset, yOffset)));
         break;
     case 'D':
-        this->scene->addGameObject(new Door(temp.moveTo(column * temp.getWidth(), row * temp.getHeight())));
+        this->scene->addGameObject(new Door(temp.moveTo(xOffset, yOffset)));
         break;
     case 'S':
-        this->scene->addGameObject(new Wall(temp.moveTo(column * temp.getWidth(), row * temp.getHeight())));
-        this->scene->addGameObject(new ScoreText(temp.moveTo(column * temp.getWidth(), row * temp.getHeight())));
+        this->scene->addGameObject(new Wall(temp.moveTo(xOffset, yOffset)));
+        this->scene->addGameObject(new ScoreText(temp.moveTo(xOffset, yOffset)));
         break;
     case 'G':
-        if (!ghosts.empty())
+        if (!ghostSpawns.empty())
         {
-            ghosts.top()->transform = temp.moveTo(column * temp.getWidth(), row * temp.getHeight());
-            this->scene->addGameObject(new Spawn(temp.moveTo(column * temp.getWidth(), row * temp.getHeight()), ghosts.top()->idString + "Spawn"));
-            this->scene->addGameObject(ghosts.top());
-            ghosts.pop();
+            ghostSpawns.top()->transform = temp.moveTo(xOffset, yOffset);
+            this->scene->addGameObject(ghostSpawns.top());
+            ghostSpawns.pop();
         }
         break;
     default:
