@@ -13,7 +13,7 @@ ScoreText::ScoreText(Transform transform) : ScoreText(sf::Color::White, transfor
 
 void ScoreText::parseMessage(std::string message)
 {
-    if (message == "addPoint")
+    if (message == "AddPoint")
     {
         text.setString("Score: " + std::to_string(++score));
     }

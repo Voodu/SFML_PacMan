@@ -5,6 +5,7 @@ MovableObject::MovableObject(Transform transform) : GameObject(transform)
     dir = sf::Vector2f(0, 0);
     nextDir = dir;
     speed = 4;
+    moves = false;
 }
 
 MovableObject::MovableObject() : MovableObject(Transform())
@@ -77,7 +78,5 @@ void MovableObject::init()
 
 void MovableObject::start()
 {
-    // std::cout << "MovableStart1\n";
     mapPointer = scene->findObjectByIdString("Map");    
-    // std::cout << "MovableStart2\n";
 }

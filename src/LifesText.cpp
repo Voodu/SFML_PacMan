@@ -13,7 +13,7 @@ LifesText::LifesText(Transform transform) : LifesText(sf::Color::White, transfor
 
 void LifesText::parseMessage(std::string message)
 {
-    if (message == "loseLife")
+    if (message == "LoseLife")
     {
         text.setString("Lifes: " + std::to_string(--lifes));
     }
