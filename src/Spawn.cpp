@@ -29,6 +29,10 @@ void Spawn::onCollision(GameObject *other)
 
 void Spawn::parseMessage(std::string message)
 {
+    if (message == "Respawn")
+    {
+        respawn();
+    }
 }
 
 void Spawn::respawn()
