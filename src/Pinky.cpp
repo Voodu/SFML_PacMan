@@ -9,9 +9,9 @@ Pinky::Pinky(Transform transform) : Pinky(sf::Color(255, 192, 203), transform)
 {
 }
 
-void Pinky::init()
+void Pinky::start()
 {
-    Ghost::init();
+    Ghost::start();
     pacMan = static_cast<MovableObject *>(scene->findObjectByIdString("PacMan"));
 }
 
@@ -37,4 +37,9 @@ int Pinky::getNextTurn()
     }
 
     return -1;
+}
+
+GameObject *Pinky::factory(Transform tr)
+{
+    return new Pinky(tr);
 }

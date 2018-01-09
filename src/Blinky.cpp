@@ -18,3 +18,8 @@ int Blinky::getNextTurn()
 {
     return directions[rand()%directions.size()];
 }
+
+GameObject* Blinky::factory(Transform tr)
+{
+    return new Blinky(tr);
+}

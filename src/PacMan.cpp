@@ -25,6 +25,11 @@ void PacMan::init()
     MovableObject::init();
 }
 
+void PacMan::start()
+{
+    MovableObject::start();
+}
+
 void PacMan::update()
 {
     for (auto event : scene->events)
@@ -46,11 +51,22 @@ void PacMan::render()
 
 void PacMan::onCollision(GameObject *other)
 {
-    //Add code to add point on collecting dot
-    if (other->tag == "Ghost")
-    {
-        std::cout << "Ghooooost!\n";
-    }
+    // if (other->tag == "Ghost")
+    // {
+    //     scene->passMessage("LifesText", "loseLife");
+    //     scene->passMessage("Blinky", "respawn");
+    //     scene->passMessage("Inky", "respawn");
+    //     scene->passMessage("Pinky", "respawn");
+    //     scene->passMessage("Clyde", "respawn");
+    //     // respawn();
+    //     return;
+    // }
+
+    // if (other->tag == "Dot")
+    // {
+    //     scene->passMessage("ScoreText", "addPoint");
+    //     return;
+    // }
 }
 
 void PacMan::parseMessage(std::string message)

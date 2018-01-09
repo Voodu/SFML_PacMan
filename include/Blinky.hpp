@@ -11,6 +11,7 @@ class Blinky : public Ghost
     Blinky(sf::Color color, Transform transform);
     Blinky(Transform transform);
     int getNextTurn() override;
+    static GameObject* factory(Transform tr);
 };
 
 #endif // !BLINKY_HPP

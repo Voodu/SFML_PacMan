@@ -5,11 +5,12 @@
 class Pinky : public Ghost
 {
   public:
-    MovableObject* pacMan;
+    MovableObject *pacMan;
     Pinky(sf::Color color, Transform transform);
     Pinky(Transform transform);
     int getNextTurn() override;
-    void init() override;
+    void start() override;
+    static GameObject *factory(Transform tr);
 };
 
 #endif // !PINKY_HPP

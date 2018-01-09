@@ -12,10 +12,16 @@ class PacMan : public MovableObject
     PacMan(sf::Color color, Transform transform);
     PacMan(Transform transform);
     void init() override;
+    void start() override;
     void update() override;
     void render() override;
     void onCollision(GameObject *other) override;
     void parseMessage(std::string message) override;
+
+    static GameObject *factory(Transform tr)
+    {
+        return new PacMan(tr);
+    }
 };
 
 #endif // !PACMAN_HPP
