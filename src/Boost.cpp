@@ -3,16 +3,41 @@
 Boost::Boost(sf::Color color, Transform transform) : StaticObject(color, transform)
 {
     tag = "Boost";
+    framesLeft = 500;
 }
 
 Boost::Boost(Transform transform) : Boost(sf::Color::White, transform)
 {
 }
 
+void Boost::update()
+{
+    if (!collected)
+    {
+        return;
+    }
+    if (--framesLeft == 100)
+    {
+        scene->passMessages("Ghost", "BoostVanishing");
+        return;
+    }
+    if (framesLeft <= 0)
+    {
+        scene->passMessages("Ghost", "BoostVanished");
+        scene->passMessage("PacMan", "BoostVanished");
+        scene->removeGameObject(this);
+        return;
+    }
+}
+
 void Boost::onCollision(GameObject *other)
 {
-    if (other->tag == "PacMan")
-    {
-        scene->removeGameObject(this);
-    }
+    collected = true;
+    hide();
+}
+
+void Boost::hide()
+{
+    transform = Transform();
+    shape = sf::RectangleShape(sf::Vector2f(transform.getWidth(), transform.getHeight()));
 }
