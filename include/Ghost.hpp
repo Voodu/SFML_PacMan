@@ -1,6 +1,7 @@
 #ifndef GHOST_CPP
 #define GHOST_CPP
 #include "MovableObject.hpp"
+#include "PacMan.hpp"
 
 class Ghost : public MovableObject
 {
