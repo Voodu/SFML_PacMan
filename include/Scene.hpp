@@ -34,7 +34,7 @@ class Scene
     std::vector<sf::Event> events; //to private and make accessor
 
   private:
-    std::vector<GameObject *> objects; //TODO: change vectors to unordered_sets
+    std::vector<GameObject *> objects;
     std::vector<GameObject *> physicalObjects;
     std::vector<GameObject *> addBuffer;
     std::vector<GameObject *> removeBuffer;

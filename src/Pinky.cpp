@@ -23,7 +23,7 @@ int Pinky::getNextTurn()
     {
         return sf::Keyboard::Key::Right;
     }
-    else if (pacDir.x < 0)
+    if (pacDir.x < 0)
     {
         return sf::Keyboard::Key::Left;
     }
@@ -31,7 +31,7 @@ int Pinky::getNextTurn()
     {
         return sf::Keyboard::Key::Down;
     }
-    else if (pacDir.y < 0)
+    if (pacDir.y < 0)
     {
         return sf::Keyboard::Key::Up;
     }

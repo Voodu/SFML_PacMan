@@ -16,9 +16,9 @@ Map::Map()
 
 void Map::init()
 {
-    for (size_t row = 0; row < charMap.size(); row++)
+    for (size_t row = 0; row < charMap.size(); ++row)
     {
-        for (size_t column = 0; column < charMap[row].size(); column++)
+        for (size_t column = 0; column < charMap[row].size(); ++column)
         {
             createEntity(row, column);
         }
