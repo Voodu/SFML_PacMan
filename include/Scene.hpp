@@ -25,6 +25,7 @@ class Scene
     void addGameObject(GameObject *go);
     void removeGameObject(GameObject *go);
     void passMessage(std::string idString, std::string message);
+    void passMessages(std::string tag, std::string message);
     void changeScene(Scene *newScene);
     bool isColliding(Transform &transform, string_set ignoredTags = string_set());
     void draw(sf::Drawable &object);
@@ -46,7 +47,11 @@ class Scene
     void updateStateAndRender();    //--
     void updateGameObjectsVector(); //--
     void removeGOs();
+    void removeFromPhys(GameObject* go);
+    void removeFromOrd(GameObject* go);
     void addGOs();
+    void addToPhys(GameObject* go);
+    void addToOrd(GameObject* go);
     void init(); //called by engine
     void act();  //--
     void sortByLayer();

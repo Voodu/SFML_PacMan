@@ -24,6 +24,17 @@ void Scene::passMessage(std::string idString, std::string message)
     }
 }
 
+void Scene::passMessages(std::string tag, std::string message)
+{
+    for (auto object : objects)
+    {
+        if (object->tag == tag)
+        {
+            object->parseMessage(message);
+        }
+    }
+}
+
 void Scene::changeScene(Scene *newScene)
 {
     nextScene = newScene;
@@ -158,15 +169,28 @@ void Scene::removeGOs()
     std::stack<GameObject *> copied = std::move(removeBuffer);
     while (!copied.empty())
     {
-        if (copied.top()->physical)
-        {
-            std::vector<GameObject *>::iterator o = std::find(physicalObjects.begin(), physicalObjects.end(), copied.top());
-            physicalObjects.erase(o);
-        }
-        std::vector<GameObject *>::iterator o = std::find(objects.begin(), objects.end(), copied.top());
+        removeFromPhys(copied.top());
+        removeFromOrd(copied.top());
+        copied.pop();
+    }
+}
+
+void Scene::removeFromPhys(GameObject *go)
+{
+    std::vector<GameObject *>::iterator o = std::find(physicalObjects.begin(), physicalObjects.end(), go);
+    if (o != physicalObjects.end())
+    {
+        physicalObjects.erase(o);
+    }
+}
+
+void Scene::removeFromOrd(GameObject *go)
+{
+    std::vector<GameObject *>::iterator o = std::find(objects.begin(), objects.end(), go);
+    if (o != objects.end())
+    {
         delete *o;
         objects.erase(o);
-        copied.pop();
     }
 }
 
@@ -176,14 +200,8 @@ void Scene::addGOs()
     std::stack<GameObject *> copied = std::move(addBuffer);
     while (!copied.empty())
     {
-        if (copied.top()->physical)
-        {
-            physicalObjects.push_back(copied.top());
-        }
-        objects.push_back(copied.top());
-        objects.back()->id = GameObject::counter++;
-        objects.back()->scene = this;
-        objects.back()->init();
+        addToPhys(copied.top());
+        addToOrd(copied.top());
         copied.pop();
     }
     while (!startCopy.empty())
@@ -191,6 +209,22 @@ void Scene::addGOs()
         startCopy.top()->start();
         startCopy.pop();
     }
+}
+
+void Scene::addToPhys(GameObject *go)
+{
+    if (go->physical)
+    {
+        physicalObjects.push_back(go);
+    }
+}
+
+void Scene::addToOrd(GameObject *go)
+{
+    objects.push_back(go);
+    objects.back()->id = GameObject::counter++;
+    objects.back()->scene = this;
+    objects.back()->init();
 }
 
 void Scene::init()
