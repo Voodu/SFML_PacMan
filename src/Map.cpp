@@ -58,7 +58,6 @@ void Map::createEntity(size_t row, size_t column)
         break;
     case 'P': //intentional lack of break!
         this->scene->addGameObject(new Spawn(temp.moveTo(xOffset, yOffset), PacMan::factory, "PacManSpawn"));
-        // this->scene->addGameObject(new PacMan(temp.moveTo(xOffset, yOffset)));
     case '.':
         this->scene->addGameObject(new Dot(Transform(xOffset + (temp.getWidth() - temp.getWidth() * dotScale) / 2, yOffset + (temp.getHeight() - temp.getHeight() * dotScale) / 2, temp.getWidth() * dotScale, temp.getHeight() * dotScale)));
         break;
@@ -74,6 +73,10 @@ void Map::createEntity(size_t row, size_t column)
     case 'S':
         this->scene->addGameObject(new Wall(temp.moveTo(xOffset, yOffset)));
         this->scene->addGameObject(new ScoreText(temp.moveTo(xOffset, yOffset)));
+        break;
+    case 'L':
+        this->scene->addGameObject(new Wall(temp.moveTo(xOffset, yOffset)));
+        this->scene->addGameObject(new LifesText(temp.moveTo(xOffset, yOffset)));
         break;
     case 'G':
         if (!ghostSpawns.empty())
