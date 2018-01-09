@@ -90,6 +90,10 @@ void Scene::initGameObjects()
             physicalObjects.push_back(object);
         }
     }
+    for (auto object : objects)
+    {
+        object->start();
+    }
 }
 
 void Scene::collectEvents()
@@ -139,7 +143,6 @@ void Scene::updateStateAndRender()
             object->render();
         }
     }
-
     window->display();
 }
 
@@ -152,33 +155,41 @@ void Scene::updateGameObjectsVector()
 
 void Scene::removeGOs()
 {
-    while (!removeBuffer.empty())
+    std::stack<GameObject *> copied = std::move(removeBuffer);
+    while (!copied.empty())
     {
-        if (removeBuffer.top()->physical)
+        if (copied.top()->physical)
         {
-            std::vector<GameObject *>::iterator o = std::find(physicalObjects.begin(), physicalObjects.end(), removeBuffer.top());
+            std::vector<GameObject *>::iterator o = std::find(physicalObjects.begin(), physicalObjects.end(), copied.top());
             physicalObjects.erase(o);
         }
-        std::vector<GameObject *>::iterator o = std::find(objects.begin(), objects.end(), removeBuffer.top());
+        std::vector<GameObject *>::iterator o = std::find(objects.begin(), objects.end(), copied.top());
         delete *o;
         objects.erase(o);
-        removeBuffer.pop();
+        copied.pop();
     }
 }
 
 void Scene::addGOs()
 {
-    while (!addBuffer.empty())
+    std::stack<GameObject *> startCopy = addBuffer;
+    std::stack<GameObject *> copied = std::move(addBuffer);
+    while (!copied.empty())
     {
-        if (addBuffer.top()->physical)
+        if (copied.top()->physical)
         {
-            physicalObjects.push_back(addBuffer.top());
+            physicalObjects.push_back(copied.top());
         }
-        objects.push_back(addBuffer.top());
+        objects.push_back(copied.top());
         objects.back()->id = GameObject::counter++;
         objects.back()->scene = this;
         objects.back()->init();
-        addBuffer.pop();
+        copied.pop();
+    }
+    while (!startCopy.empty())
+    {
+        startCopy.top()->start();
+        startCopy.pop();
     }
 }
 
