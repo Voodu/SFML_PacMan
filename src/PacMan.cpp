@@ -1,9 +1,10 @@
 #include "../include/PacMan.hpp"
 #include "../include/MenuScene.hpp"
 
-PacMan::PacMan(sf::Color color, Transform transform) : MovableObject(transform),  color(color)
+PacMan::PacMan(sf::Color color, Transform transform) : MovableObject(transform), color(color)
 {
     physical = true;
+    boosted = false;
     layer = 1;
     tag = "PacMan";
     idString = "PacMan";
@@ -51,22 +52,20 @@ void PacMan::render()
 
 void PacMan::onCollision(GameObject *other)
 {
-    // if (other->tag == "Ghost")
-    // {
-    //     scene->passMessage("LifesText", "loseLife");
-    //     scene->passMessage("Blinky", "respawn");
-    //     scene->passMessage("Inky", "respawn");
-    //     scene->passMessage("Pinky", "respawn");
-    //     scene->passMessage("Clyde", "respawn");
-    //     // respawn();
-    //     return;
-    // }
+    if (other->tag == "Ghost" && !boosted)
+    {
+        scene->passMessage("LifesText", "LoseLife");
+        scene->removeGameObject(this);
+        scene->passMessage(idString + "Spawn", "Respawn");
+        scene->passMessages("Ghost", "PacManCaught");
+        return;
+    }
 
-    // if (other->tag == "Dot")
-    // {
-    //     scene->passMessage("ScoreText", "addPoint");
-    //     return;
-    // }
+    if (other->tag == "Dot")
+    {
+        scene->passMessage("ScoreText", "AddPoint");
+        return;
+    }
 }
 
 void PacMan::parseMessage(std::string message)

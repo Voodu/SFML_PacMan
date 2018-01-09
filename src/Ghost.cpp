@@ -45,8 +45,18 @@ void Ghost::render()
 
 void Ghost::onCollision(GameObject *other)
 {
+    if (other->tag == "PacMan" && static_cast<PacMan *>(other)->boosted)
+    {
+        scene->removeGameObject(this);
+        scene->passMessage(idString + "Spawn", "Respawn");
+    }
 }
 
 void Ghost::parseMessage(std::string message)
 {
+    if (message == "PacManCaught")
+    {
+        scene->removeGameObject(this);
+        scene->passMessage(idString + "Spawn", "Respawn");
+    }
 }
