@@ -18,6 +18,10 @@ Text::Text(Transform transform) : Text(sf::Color::White, transform)
 {
 }
 
+void Text::start()
+{
+}
+
 void Text::init()
 {
 }

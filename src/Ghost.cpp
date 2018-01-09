@@ -20,6 +20,13 @@ void Ghost::init()
     MovableObject::init();
 }
 
+void Ghost::start()
+{
+    // std::cout << "Starting Ghost\n";
+    MovableObject::start();
+    // std::cout << "Started Ghost\n";
+}
+
 void Ghost::update()
 {
     if (!moves || nextDir == sf::Vector2f(0, 0))

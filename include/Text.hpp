@@ -11,6 +11,7 @@ class Text : public GameObject
     Text(sf::Color color, Transform transform);
     Text(Transform transform);
     void init() override;
+    void start() override;
     void update() override;
     void render() override;
     void onCollision(GameObject *other) override;

@@ -10,11 +10,11 @@ class Ghost : public MovableObject
     Ghost(sf::Color color, Transform transform);
     virtual int getNextTurn() = 0;
     void init() override;
+    void start() override;
     void update() override;
     void render() override;
     void onCollision(GameObject *other) override;
     void parseMessage(std::string message) override;
-
 };
 
 #endif // !GHOST_CPP

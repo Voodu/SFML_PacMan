@@ -25,6 +25,7 @@ class MovableObject : public GameObject
     void outOfBoundsTeleport();
 
     void init() override;
+    void start() override;
     void update() override = 0;
     void render() override = 0;
     void onCollision(GameObject *other) override = 0;

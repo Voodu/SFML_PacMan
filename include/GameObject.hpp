@@ -1,5 +1,6 @@
 #ifndef GAMEOBJECT_HPP
 #define GAMEOBJECT_HPP
+#include <iostream>
 #include "Scene.hpp"
 #include "Transform.hpp"
 class Scene;
@@ -27,7 +28,8 @@ class GameObject
 
   protected:
     Scene *scene;
-    virtual void init() = 0;                            //TO OVERRIDE
+    virtual void init() = 0;                            //TO OVERRIDE, other objects may not be spawned yet
+    virtual void start() = 0;                           //TO OVERRIDE, can look for other objects on scene
     virtual void update() = 0;                          //TO OVERRIDE
     virtual void render() = 0;                          //TO OVERRIDE
     virtual void onCollision(GameObject *other) = 0;    //TO OVERRIDE

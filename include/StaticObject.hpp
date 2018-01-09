@@ -10,6 +10,7 @@ class StaticObject : public GameObject
     StaticObject(sf::Color color, Transform transform);
     StaticObject(Transform transform);
     void init() override;
+    void start() override;
     void update() override;
     void render() override;
     void onCollision(GameObject *other) override;

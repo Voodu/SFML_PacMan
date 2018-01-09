@@ -16,6 +16,10 @@ void StaticObject::init()
 {
 }
 
+void StaticObject::start()
+{
+}
+
 void StaticObject::update()
 {
 }

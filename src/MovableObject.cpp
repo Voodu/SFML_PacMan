@@ -73,5 +73,11 @@ void MovableObject::outOfBoundsTeleport()
 
 void MovableObject::init()
 {
-    mapPointer = scene->findObjectByIdString("Map");
+}
+
+void MovableObject::start()
+{
+    // std::cout << "MovableStart1\n";
+    mapPointer = scene->findObjectByIdString("Map");    
+    // std::cout << "MovableStart2\n";
 }
