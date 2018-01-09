@@ -4,12 +4,12 @@
 //public
 void Scene::addGameObject(GameObject *go)
 {
-    addBuffer.push(go);
+    addBuffer.push_back(go);
 }
 
 void Scene::removeGameObject(GameObject *go)
 {
-    removeBuffer.push(go);
+    removeBuffer.push_back(go);
 }
 
 void Scene::passMessage(std::string idString, std::string message)
@@ -96,6 +96,7 @@ void Scene::initGameObjects()
         object->id = GameObject::counter++;
         object->scene = this;
         object->init();
+        
         if (object->physical)
         {
             physicalObjects.push_back(object);
@@ -166,12 +167,11 @@ void Scene::updateGameObjectsVector()
 
 void Scene::removeGOs()
 {
-    std::stack<GameObject *> copied = std::move(removeBuffer);
-    while (!copied.empty())
+    std::vector<GameObject *> copied = std::move(removeBuffer);
+    for (auto object : copied)
     {
-        removeFromPhys(copied.top());
-        removeFromOrd(copied.top());
-        copied.pop();
+        removeFromPhys(object);
+        removeFromOrd(object);
     }
 }
 
@@ -196,18 +196,15 @@ void Scene::removeFromOrd(GameObject *go)
 
 void Scene::addGOs()
 {
-    std::stack<GameObject *> startCopy = addBuffer;
-    std::stack<GameObject *> copied = std::move(addBuffer);
-    while (!copied.empty())
+    std::vector<GameObject *> copied = std::move(addBuffer);
+    for (auto object : copied)
     {
-        addToPhys(copied.top());
-        addToOrd(copied.top());
-        copied.pop();
+        addToPhys(object);
+        addToOrd(object);
     }
-    while (!startCopy.empty())
+    for (auto object : copied)
     {
-        startCopy.top()->start();
-        startCopy.pop();
+        object->start();
     }
 }
 

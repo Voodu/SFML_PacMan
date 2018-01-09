@@ -5,7 +5,6 @@
 #include "GameObject.hpp"
 #include "Transform.hpp"
 #include <vector>
-#include <stack>
 #include <algorithm>
 #include <unordered_set>
 
@@ -37,8 +36,8 @@ class Scene
   private:
     std::vector<GameObject *> objects; //TODO: change vectors to unordered_sets
     std::vector<GameObject *> physicalObjects;
-    std::stack<GameObject *> addBuffer;
-    std::stack<GameObject *> removeBuffer;
+    std::vector<GameObject *> addBuffer;
+    std::vector<GameObject *> removeBuffer;
     sf::RenderWindow *window;
     Scene *nextScene = nullptr;
     void initGameObjects(); //adding all GO-s
