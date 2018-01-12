@@ -22,9 +22,7 @@ void Ghost::init()
 
 void Ghost::start()
 {
-    // std::cout << "Starting Ghost\n";
     MovableObject::start();
-    // std::cout << "Started Ghost\n";
 }
 
 void Ghost::update()
