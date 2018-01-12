@@ -96,7 +96,7 @@ void Scene::initGameObjects()
         object->id = GameObject::counter++;
         object->scene = this;
         object->init();
-        
+
         if (object->physical)
         {
             physicalObjects.push_back(object);
@@ -114,7 +114,8 @@ void Scene::collectEvents()
     events.clear();
     while (window->pollEvent(event))
     {
-        if (event.type == sf::Event::Closed)
+        if (event.type == sf::Event::Closed ||
+            (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Key::Escape))
         {
             window->close();
         }
