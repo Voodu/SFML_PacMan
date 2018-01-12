@@ -1,12 +1,8 @@
 #include "../include/Inky.hpp"
 
-Inky::Inky(sf::Color color, Transform transform) : Ghost(color, transform)
+Inky::Inky(Transform transform) : Ghost(transform, "sprites/ghost.png")
 {
     idString = "Inky";
-}
-
-Inky::Inky(Transform transform) : Inky(sf::Color::Cyan, transform)
-{
 }
 
 int Inky::getNextTurn()
