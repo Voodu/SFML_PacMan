@@ -6,7 +6,6 @@ class Pinky : public Ghost
 {
   public:
     MovableObject *pacMan;
-    Pinky(sf::Color color, Transform transform);
     Pinky(Transform transform);
     int getNextTurn() override;
     void start() override;

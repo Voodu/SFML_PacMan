@@ -5,7 +5,6 @@
 class Clyde : public Ghost
 {
   public:
-    Clyde(sf::Color color, Transform transform);
     Clyde(Transform transform);
     int getNextTurn() override;
 };

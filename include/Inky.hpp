@@ -5,7 +5,6 @@
 class Inky : public Ghost
 {
   public:
-    Inky(sf::Color color, Transform transform);
     Inky(Transform transform);
     int getNextTurn() override;
 };

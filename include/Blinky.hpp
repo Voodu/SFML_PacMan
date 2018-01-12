@@ -8,7 +8,6 @@ class Blinky : public Ghost
 {
     std::vector<int> directions;
   public:
-    Blinky(sf::Color color, Transform transform);
     Blinky(Transform transform);
     int getNextTurn() override;
     static GameObject* factory(Transform tr);
