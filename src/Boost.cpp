@@ -4,6 +4,7 @@ Boost::Boost(sf::Color color, Transform transform) : StaticObject(color, transfo
 {
     tag = "Boost";
     framesLeft = 500;
+    collected = false;
 }
 
 Boost::Boost(Transform transform) : Boost(sf::Color::White, transform)
@@ -39,5 +40,5 @@ void Boost::onCollision(GameObject *other)
 void Boost::hide()
 {
     transform = Transform();
-    shape = sf::RectangleShape(sf::Vector2f(transform.getWidth(), transform.getHeight()));
+    shape = sf::RectangleShape(sf::Vector2f(0, 0));
 }
