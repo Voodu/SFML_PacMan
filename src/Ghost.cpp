@@ -75,7 +75,6 @@ void Ghost::parseMessage(std::string message)
     if (message == "PacManCaught")
     {
         scene->removeGameObject(this);
-        std::cout << "Removing " << idString << '\n';
         scene->passMessage(idString + "Spawn", "Respawn");
         return;
     }

@@ -42,7 +42,6 @@ void Animation::render(Scene *scene, Transform transform)
 void Animation::changeSet(size_t setIx)
 {
     currentSpriteIx = setIx * 2;
-    std::cout << "Changing set\n";
     if (currentSpriteIx >= clips.size())
     {
         throw "Out of range";
