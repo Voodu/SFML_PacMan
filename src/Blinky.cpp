@@ -1,6 +1,6 @@
 #include "../include/Blinky.hpp"
 
-Blinky::Blinky(Transform transform) : Ghost(transform, "sprites/ghost.png")
+Blinky::Blinky(Transform transform) : Ghost(transform, "sprites/ghost1.png")
 {
     idString = "Blinky";
     srand(time(NULL));

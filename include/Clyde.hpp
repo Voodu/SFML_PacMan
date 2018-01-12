@@ -7,6 +7,7 @@ class Clyde : public Ghost
   public:
     Clyde(Transform transform);
     int getNextTurn() override;
+    static GameObject *factory(Transform tr);
 };
 
 #endif // !CLYDE_HPP

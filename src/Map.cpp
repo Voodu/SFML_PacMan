@@ -7,8 +7,8 @@ Map::Map()
     transform = Transform(0, 0);
     ghostSpawns.push(new Spawn(Transform(0, 0), Blinky::factory, "BlinkySpawn"));
     ghostSpawns.push(new Spawn(Transform(0, 0), Pinky::factory, "PinkySpawn"));
-    // ghostSpawns.push(new Inky(Transform(0, 0, tileSize, tileSize)));
-    // ghostSpawns.push(new Clyde(Transform(0, 0, tileSize, tileSize)));
+    ghostSpawns.push(new Spawn(Transform(0, 0), Inky::factory, "InkySpawn"));
+    ghostSpawns.push(new Spawn(Transform(0, 0), Clyde::factory, "ClydeSpawn"));
     readFile();
     transform.setHeight(charMap.size() * tileSize);
     transform.setWidth(charMap.size() > 0 ? charMap.front().size() * tileSize : 0);
