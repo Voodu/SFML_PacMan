@@ -1,16 +1,15 @@
 #ifndef PACMAN_HPP
 #define PACMAN_HPP
 #include "MovableObject.hpp"
-
-typedef std::unordered_set<std::string> string_set;
+#include "Animation.hpp"
 
 class PacMan : public MovableObject
 {
+    Animation animation;
+    void setAnimation();
+
   public:
-    sf::Color color;
-    sf::RectangleShape shape;
-    int boosted;
-    PacMan(sf::Color color, Transform transform);
+    int boosted; //TODO private
     PacMan(Transform transform);
     void init() override;
     void start() override;

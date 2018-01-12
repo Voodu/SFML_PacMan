@@ -1,24 +1,16 @@
 #include "../include/PacMan.hpp"
-#include "../include/MenuScene.hpp"
 
-PacMan::PacMan(sf::Color color, Transform transform) : MovableObject(transform), color(color)
+PacMan::PacMan(Transform transform) : MovableObject(transform), animation("sprites/pacman.png")
 {
     physical = true;
     boosted = 0;
     layer = 1;
-    tag = "PacMan";
-    idString = "PacMan";
-    shape = sf::RectangleShape(sf::Vector2f(transform.rect.width, transform.rect.height));
-    shape.setFillColor(color);
+    tag = idString = "PacMan";
     ignoredMoveCollisions.insert(tag);
     ignoredMoveCollisions.insert("Dot");
     ignoredMoveCollisions.insert("Fruit");
     ignoredMoveCollisions.insert("Boost");
     ignoredMoveCollisions.insert("Ghost");
-}
-
-PacMan::PacMan(Transform transform) : PacMan(sf::Color::Green, transform)
-{
 }
 
 void PacMan::init()
@@ -42,12 +34,34 @@ void PacMan::update()
     }
 
     move();
+    setAnimation();
+}
+
+void PacMan::setAnimation()
+{
+    sf::Vector2f t = getDir();
+    size_t ix = animation.getSetIndex();
+    if (t.x > 0 && ix != 0)
+    {
+        animation.changeSet(0);
+    }
+    else if (t.y < 0 && ix != 1)
+    {
+        animation.changeSet(1);
+    }
+    else if (t.x < 0 && ix != 2)
+    {
+        animation.changeSet(2);
+    }
+    else if (t.y > 0 && ix != 3)
+    {
+        animation.changeSet(3);
+    }
 }
 
 void PacMan::render()
 {
-    shape.setPosition(transform.rect.left, transform.rect.top);
-    scene->draw(shape);
+    animation.render(scene, transform);
 }
 
 void PacMan::onCollision(GameObject *other)

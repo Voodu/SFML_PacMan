@@ -2,13 +2,15 @@
 #define GHOST_CPP
 #include "MovableObject.hpp"
 #include "PacMan.hpp"
+#include "Animation.hpp"
 
 class Ghost : public MovableObject
 {
+    Animation animation;
+    void setAnimation();
+
   public:
-    sf::Color color;
-    sf::RectangleShape shape;
-    Ghost(sf::Color color, Transform transform);
+    Ghost(Transform transform, std::string spritesPath);
     virtual int getNextTurn() = 0;
     void init() override;
     void start() override;

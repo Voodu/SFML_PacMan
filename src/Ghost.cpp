@@ -1,12 +1,10 @@
 #include "../include/Ghost.hpp"
 
-Ghost::Ghost(sf::Color color, Transform transform) : MovableObject(transform), color(color)
+Ghost::Ghost(Transform transform, std::string spritesPath) : MovableObject(transform), animation(spritesPath)
 {
     layer = 2;
     physical = true;
     tag = "Ghost";
-    shape = sf::RectangleShape(sf::Vector2f(transform.rect.width, transform.rect.height));
-    shape.setFillColor(color);
     ignoredMoveCollisions.insert(tag);
     ignoredMoveCollisions.insert("Door");
     ignoredMoveCollisions.insert("Dot");
@@ -33,12 +31,34 @@ void Ghost::update()
     }
 
     move();
+    setAnimation();
+}
+
+void Ghost::setAnimation()
+{
+    sf::Vector2f t = getDir();
+    size_t ix = animation.getSetIndex();
+    if (t.x > 0 && ix != 0)
+    {
+        animation.changeSet(0);
+    }
+    else if (t.y < 0 && ix != 1)
+    {
+        animation.changeSet(1);
+    }
+    else if (t.x < 0 && ix != 2)
+    {
+        animation.changeSet(2);
+    }
+    else if (t.y > 0 && ix != 3)
+    {
+        animation.changeSet(3);
+    }
 }
 
 void Ghost::render()
 {
-    shape.setPosition(transform.rect.left, transform.rect.top);
-    scene->draw(shape);
+    animation.render(scene, transform);
 }
 
 void Ghost::onCollision(GameObject *other)
@@ -55,6 +75,7 @@ void Ghost::parseMessage(std::string message)
     if (message == "PacManCaught")
     {
         scene->removeGameObject(this);
+        std::cout << "Removing " << idString << '\n';
         scene->passMessage(idString + "Spawn", "Respawn");
         return;
     }
