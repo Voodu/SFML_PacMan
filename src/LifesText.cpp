@@ -16,5 +16,9 @@ void LifesText::parseMessage(std::string message)
     if (message == "LoseLife")
     {
         text.setString("Lifes: " + std::to_string(--lifes));
+        if (lifes == 0)
+        {
+            scene->passMessage("ScoreText", "GameOver");
+        }
     }
 }
