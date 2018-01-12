@@ -1,4 +1,5 @@
 #include "../include/ScoreText.hpp"
+#include "../include/MenuScene.hpp"
 
 ScoreText::ScoreText(sf::Color color, Transform transform) : Text(transform)
 {
@@ -16,5 +17,10 @@ void ScoreText::parseMessage(std::string message)
     if (message == "AddPoint")
     {
         text.setString("Score: " + std::to_string(++score));
+        return;
+    }
+    if (message == "GameOver")
+    {
+        scene->changeScene(new MenuScene(score));
     }
 }
