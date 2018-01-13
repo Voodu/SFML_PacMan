@@ -1,6 +1,6 @@
 #include "../include/Ghost.hpp"
 
-Ghost::Ghost(Transform transform, std::string spritesPath) : MovableObject(transform), animation(spritesPath)
+Ghost::Ghost(Transform transform, std::string spritesPath) : MovableObject(transform), animation(spritesPath), invincible(true)
 {
     layer = 2;
     physical = true;
@@ -63,7 +63,7 @@ void Ghost::render()
 
 void Ghost::onCollision(GameObject *other)
 {
-    if (other->tag == "PacMan" && static_cast<PacMan *>(other)->boosted)
+    if (other->tag == "PacMan" && !invincible)
     {
         scene->removeGameObject(this);
         scene->passMessage(idString + "Spawn", "Respawn");
@@ -81,6 +81,8 @@ void Ghost::parseMessage(std::string message)
     if (message == "PacManBoosted")
     {
         std::cout << "PacManBoosted\n";
+        animation.changeTexture("sprites/dead.png");
+        invincible = false;
         return;
     }
     if (message == "BoostVanishing")
@@ -91,6 +93,8 @@ void Ghost::parseMessage(std::string message)
     if (message == "BoostVanished")
     {
         std::cout << "BoostVanished\n";
+        animation.changeTexture("sprites/" + idString + ".png");
+        invincible = true;
         return;
     }
 }

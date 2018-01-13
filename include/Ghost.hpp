@@ -10,6 +10,7 @@ class Ghost : public MovableObject
     void setAnimation();
 
   public:
+    bool invincible;
     Ghost(Transform transform, std::string spritesPath);
     virtual int getNextTurn() = 0;
     void init() override;

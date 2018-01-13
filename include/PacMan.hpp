@@ -2,6 +2,7 @@
 #define PACMAN_HPP
 #include "MovableObject.hpp"
 #include "Animation.hpp"
+#include "Ghost.hpp"
 
 class PacMan : public MovableObject
 {
@@ -9,7 +10,6 @@ class PacMan : public MovableObject
     void setAnimation();
 
   public:
-    int boosted; //TODO private
     PacMan(Transform transform);
     void init() override;
     void start() override;

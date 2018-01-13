@@ -3,7 +3,6 @@
 PacMan::PacMan(Transform transform) : MovableObject(transform), animation("sprites/pacman.png")
 {
     physical = true;
-    boosted = 0;
     layer = 1;
     tag = idString = "PacMan";
     ignoredMoveCollisions.insert(tag);
@@ -68,7 +67,7 @@ void PacMan::render()
 
 void PacMan::onCollision(GameObject *other)
 {
-    if (!boosted && other->tag == "Ghost")
+    if (other->tag == "Ghost" && static_cast<Ghost *>(other)->invincible)
     {
         scene->passMessage("LifesText", "LoseLife");
         scene->removeGameObject(this);
@@ -86,7 +85,6 @@ void PacMan::onCollision(GameObject *other)
     if (other->tag == "Boost")
     {
         scene->passMessages("Ghost", "PacManBoosted");
-        ++boosted;
         return;
     }
 }
@@ -95,7 +93,5 @@ void PacMan::parseMessage(std::string message)
 {
     if (message == "BoostVanished")
     {
-        --boosted;
-        std::cout << "Boosts: " << boosted << '\n';
     }
 }
