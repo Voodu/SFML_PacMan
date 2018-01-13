@@ -88,6 +88,15 @@ GameObject *Scene::findObjectByIdString(std::string idString)
     return nullptr;
 }
 
+void Scene::freezeFor(size_t frames)
+{
+    stopFrames = frames;
+}
+void Scene::freezeUntil(std::function<bool(sf::Event)> unfreezeEvent)
+{
+    this->unfreezeEvent = unfreezeEvent;
+}
+
 //private
 void Scene::initGameObjects()
 {
@@ -236,9 +245,37 @@ void Scene::init()
 void Scene::act()
 {
     collectEvents();
-    updatePhysics();
-    updateStateAndRender();
-    updateGameObjectsVector();
+    if (canAct())
+    {
+        updatePhysics();
+        updateStateAndRender();
+        updateGameObjectsVector();
+    }
+}
+
+bool Scene::canAct()
+{
+    if (stopFrames > 0)
+    {
+        --stopFrames;
+        return false;
+    }
+    else if (unfreezeEvent != nullptr)
+    {
+        for (auto event : events)
+        {
+            if (unfreezeEvent(event))
+            {
+                unfreezeEvent = nullptr;
+                return true;
+            }
+        }
+    }
+    else
+    {
+        return true;
+    }
+    return false;
 }
 
 void Scene::sortByLayer()

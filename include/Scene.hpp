@@ -7,6 +7,7 @@
 #include <vector>
 #include <algorithm>
 #include <unordered_set>
+#include <functional>
 
 typedef std::unordered_set<std::string> string_set;
 
@@ -30,6 +31,8 @@ class Scene
     void draw(sf::Drawable &object);
     std::vector<GameObject *> findObjectsByTag(std::string tag);
     GameObject *findObjectByIdString(std::string idString);
+    void freezeFor(size_t frames);
+    void freezeUntil(std::function<bool(sf::Event)> unfreezeEvent);
     virtual ~Scene();              //TO OVERRIDE
     std::vector<sf::Event> events; //to private and make accessor
 
@@ -40,19 +43,22 @@ class Scene
     std::vector<GameObject *> removeBuffer;
     sf::RenderWindow *window;
     Scene *nextScene = nullptr;
+    size_t stopFrames = 0;
+    std::function<bool(sf::Event)> unfreezeEvent = nullptr;
     void initGameObjects(); //adding all GO-s
     void collectEvents();
     void updatePhysics();           //called by act
     void updateStateAndRender();    //--
     void updateGameObjectsVector(); //--
     void removeGOs();
-    void removeFromPhys(GameObject* go);
-    void removeFromOrd(GameObject* go);
+    void removeFromPhys(GameObject *go);
+    void removeFromOrd(GameObject *go);
     void addGOs();
-    void addToPhys(GameObject* go);
-    void addToOrd(GameObject* go);
+    void addToPhys(GameObject *go);
+    void addToOrd(GameObject *go);
     void init(); //called by engine
     void act();  //--
+    bool canAct();
     void sortByLayer();
 };
 
