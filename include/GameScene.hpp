@@ -7,8 +7,9 @@
 
 class GameScene : public Scene
 {
+    int score;
   public:
-    GameScene();
+    GameScene(int score = 0);
     std::vector<GameObject *> loadGameObjects() override;
 };
 

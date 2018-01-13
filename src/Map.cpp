@@ -1,6 +1,6 @@
 #include "../include/Map.hpp"
 
-Map::Map()
+Map::Map(int score) : score(score)
 {
     idString = "Map";
     tag = "Map";
@@ -43,6 +43,13 @@ void Map::onCollision(GameObject *other)
 
 void Map::parseMessage(std::string message)
 {
+    if (message == "DotEaten")
+    {
+        if(--dotsNumber <= 0)
+        {
+            scene->passMessage("ScoreText", "GameWin");
+        }
+    }
 }
 
 void Map::createEntity(size_t row, size_t column)
@@ -60,6 +67,7 @@ void Map::createEntity(size_t row, size_t column)
         this->scene->addGameObject(new Spawn(temp.moveTo(xOffset, yOffset), PacMan::factory, "PacManSpawn"));
     case '.':
         this->scene->addGameObject(new Dot(Transform(xOffset + (temp.getWidth() - temp.getWidth() * dotScale) / 2, yOffset + (temp.getHeight() - temp.getHeight() * dotScale) / 2, temp.getWidth() * dotScale, temp.getHeight() * dotScale)));
+        ++dotsNumber;
         break;
     case '0':
         this->scene->addGameObject(new Boost(temp.moveTo(xOffset, yOffset)));
@@ -72,7 +80,7 @@ void Map::createEntity(size_t row, size_t column)
         break;
     case 'S':
         this->scene->addGameObject(new Wall(temp.moveTo(xOffset, yOffset)));
-        this->scene->addGameObject(new ScoreText(temp.moveTo(xOffset, yOffset)));
+        this->scene->addGameObject(new ScoreText(temp.moveTo(xOffset, yOffset), score));
         break;
     case 'L':
         this->scene->addGameObject(new Wall(temp.moveTo(xOffset, yOffset)));

@@ -23,14 +23,16 @@
 
 class Map : public GameObject
 {
+    int score;
     const int tileSize = 20;
+    size_t dotsNumber = 0;
     std::vector<std::vector<char>> charMap;
     std::stack<Spawn *> ghostSpawns;
     void readFile();
     void createEntity(size_t row, size_t column);
 
   public:
-    Map();
+    Map(int score = 0);
     void init() override;
     void start() override;
     void update() override;

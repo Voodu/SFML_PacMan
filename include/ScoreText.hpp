@@ -7,8 +7,7 @@ class ScoreText : public Text
 {
   public:
     int score;
-    ScoreText(sf::Color color, Transform transformText);
-    ScoreText(Transform transformText);
+    ScoreText(Transform transformText, int score = 0);
     void parseMessage(std::string message) override;
 };
 

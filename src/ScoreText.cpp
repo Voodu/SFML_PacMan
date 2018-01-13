@@ -1,15 +1,11 @@
 #include "../include/ScoreText.hpp"
 #include "../include/MenuScene.hpp"
+#include "../include/GameScene.hpp"
 
-ScoreText::ScoreText(sf::Color color, Transform transform) : Text(transform)
+ScoreText::ScoreText(Transform transform, int score) : Text(transform), score(score)
 {
-    score = 0;
     idString = "ScoreText";
     text.setString("Score: " + std::to_string(score));
-}
-
-ScoreText::ScoreText(Transform transform) : ScoreText(sf::Color::White, transform)
-{
 }
 
 void ScoreText::parseMessage(std::string message)
@@ -17,10 +13,17 @@ void ScoreText::parseMessage(std::string message)
     if (message == "AddPoint")
     {
         text.setString("Score: " + std::to_string(++score));
+        scene->passMessage("Map", "DotEaten");
         return;
     }
     if (message == "GameOver")
     {
         scene->changeScene(new MenuScene(score));
+        return;
+    }
+    if (message == "GameWin")
+    {
+        scene->changeScene(new GameScene(score));
+        return;
     }
 }
