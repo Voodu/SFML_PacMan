@@ -2,11 +2,12 @@
 #define SPAWN_HPP
 
 #include "GameObject.hpp"
+#include <functional>
 
 class Spawn : public GameObject
 {
   public:
-    Spawn(Transform transform, GameObject *(*ctor)(Transform), std::string tag);
+    Spawn(Transform transform, std::function<GameObject *(Transform)> ctor, std::string idString);
     void init() override;
     void start() override;
     void update() override;
@@ -16,7 +17,7 @@ class Spawn : public GameObject
 
     void respawn();
 
-    GameObject *(*factory)(Transform);
+    std::function<GameObject *(Transform)> factory;
 };
 
 #endif // !SPAWN_HPP

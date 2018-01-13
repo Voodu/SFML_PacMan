@@ -1,6 +1,6 @@
 #include "../include/Spawn.hpp"
 
-Spawn::Spawn(Transform transform, GameObject *(*ctor)(Transform), std::string idString) : GameObject(transform)
+Spawn::Spawn(Transform transform, std::function<GameObject *(Transform)> ctor, std::string idString) : GameObject(transform)
 {
     this->factory = ctor;
     this->idString = idString;

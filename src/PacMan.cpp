@@ -16,6 +16,8 @@ PacMan::PacMan(Transform transform) : MovableObject(transform), animation("sprit
 void PacMan::init()
 {
     MovableObject::init();
+    scene->freezeUntil([](auto event) { return event.type == sf::Event::KeyPressed &&
+                                               event.key.code == sf::Keyboard::Key::Return; });
 }
 
 void PacMan::start()
