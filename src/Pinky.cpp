@@ -1,6 +1,6 @@
 #include "../include/Pinky.hpp"
 
-Pinky::Pinky(Transform transform) : Ghost(transform, "sprites/ghost4.png")
+Pinky::Pinky(Transform transform) : Ghost(transform, "sprites/Pinky.png")
 {
     idString = "Pinky";
 }

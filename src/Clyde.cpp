@@ -1,6 +1,6 @@
 #include "../include/Clyde.hpp"
 
-Clyde::Clyde(Transform transform) : Ghost(transform, "sprites/ghost2.png")
+Clyde::Clyde(Transform transform) : Ghost(transform, "sprites/Clyde.png")
 {
     idString = "Clyde";
 }

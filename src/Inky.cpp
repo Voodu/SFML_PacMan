@@ -1,6 +1,6 @@
 #include "../include/Inky.hpp"
 
-Inky::Inky(Transform transform) : Ghost(transform, "sprites/ghost3.png")
+Inky::Inky(Transform transform) : Ghost(transform, "sprites/Inky.png")
 {
     idString = "Inky";
 }
