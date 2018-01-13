@@ -2,9 +2,15 @@
 
 Animation::Animation(std::string txtFilepath) : currentSpriteIx(0), delay(10), counter(0)
 {
-    if (!texture.loadFromFile(txtFilepath))
+    changeTexture(txtFilepath);
+}
+
+void Animation::changeTexture(std::string filepath)
+{
+    clips.clear();
+    if (!texture.loadFromFile(filepath))
     {
-        throw "Cannot load" + txtFilepath;
+        throw "Cannot load" + filepath;
     }
     sf::Sprite temp;
     sf::FloatRect size;

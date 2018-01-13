@@ -19,6 +19,7 @@ class Animation
   public:
     Animation(std::string txtFilepath);
     void changeSet(size_t setIx);
+    void changeTexture(std::string filepath);
     size_t getSetIndex();
     void render(Scene *scene, Transform transform);
 };
