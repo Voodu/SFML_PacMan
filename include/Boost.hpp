@@ -9,7 +9,6 @@ class Boost : public StaticObject
     bool collected;
     void hide();
   public:
-    Boost(sf::Color color, Transform transform);
     Boost(Transform transform);
     void onCollision(GameObject *other) override;
     void update() override;

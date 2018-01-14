@@ -1,14 +1,10 @@
 #include "../include/Boost.hpp"
 
-Boost::Boost(sf::Color color, Transform transform) : StaticObject(color, transform)
+Boost::Boost(Transform transform) : StaticObject("sprites/Boost.png", transform)
 {
     tag = "Boost";
     framesLeft = 500;
     collected = false;
-}
-
-Boost::Boost(Transform transform) : Boost(sf::Color::White, transform)
-{
 }
 
 void Boost::update()
@@ -20,14 +16,12 @@ void Boost::update()
     if (--framesLeft == 100)
     {
         scene->passMessages("Ghost", "BoostVanishing");
-        return;
     }
-    if (framesLeft <= 0)
+    else if (framesLeft <= 0)
     {
         scene->passMessages("Ghost", "BoostVanished");
         scene->passMessage("PacMan", "BoostVanished");
         scene->removeGameObject(this);
-        return;
     }
 }
 
@@ -40,5 +34,5 @@ void Boost::onCollision(GameObject *other)
 void Boost::hide()
 {
     transform = Transform();
-    shape = sf::RectangleShape(sf::Vector2f(0, 0));
+    sprite.setScale(sf::Vector2f(0, 0));
 }

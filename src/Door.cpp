@@ -1,10 +1,6 @@
 #include "../include/Door.hpp"
 
-Door::Door(sf::Color color, Transform transform) : StaticObject(color, transform)
+Door::Door(Transform transform) : StaticObject("sprites/Door.png", transform)
 {
     tag = "Door";
-}
-
-Door::Door(Transform transform) : Door(sf::Color::Magenta, transform)
-{
 }

@@ -6,7 +6,6 @@
 class Wall : public StaticObject
 {
   public:
-    Wall(sf::Color color, Transform transform);
     Wall(Transform transform);
 };
 

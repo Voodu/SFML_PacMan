@@ -5,7 +5,6 @@
 class Door : public StaticObject
 {
   public:
-    Door(sf::Color color, Transform transform);
     Door(Transform transform);
 };
 
