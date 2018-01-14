@@ -4,7 +4,7 @@ MovableObject::MovableObject(Transform transform) : GameObject(transform)
 {
     dir = sf::Vector2f(0, 0);
     nextDir = dir;
-    speed = 4;
+    speed = 2;
     moves = false;
 }
 
@@ -39,8 +39,16 @@ void MovableObject::changeDir(sf::Vector2f dir)
     nextDir = dir;
 }
 
+void MovableObject::setSpeed(int value)
+{
+    while ((int)transform.getX() % value != 0 && (int)transform.getY() % value != 0)
+        move();
+    speed = value;
+}
+
 void MovableObject::move()
 {
+    std::cout << "moving\n";
     outOfBoundsTeleport();
     moves = true;
     Transform temp;
@@ -78,5 +86,5 @@ void MovableObject::init()
 
 void MovableObject::start()
 {
-    mapPointer = scene->findObjectByIdString("Map");    
+    mapPointer = scene->findObjectByIdString("Map");
 }
