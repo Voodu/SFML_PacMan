@@ -4,10 +4,14 @@
 
 class StaticObject : public GameObject
 {
+    const int clipSize = 64;
   public:
-    sf::Color color;
-    sf::RectangleShape shape;
+    sf::Texture texture;
+    sf::Sprite sprite;
+    sf::Color color; //to remove
+    sf::RectangleShape shape; //to remove
     StaticObject(sf::Color color, Transform transform);
+    StaticObject(std::string txtFileName, Transform transform);
     StaticObject(Transform transform);
     void init() override;
     void start() override;
