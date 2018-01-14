@@ -13,11 +13,13 @@ class Animation
     size_t currentSpriteIx;
     size_t delay;
     size_t counter;
+    bool blinking;
     std::vector<sf::Sprite> clips;
     void setPosition(float x, float y);
 
   public:
     Animation(std::string txtFilepath);
+    void blink();
     void changeSet(size_t setIx);
     void changeTexture(std::string filepath);
     size_t getSetIndex();

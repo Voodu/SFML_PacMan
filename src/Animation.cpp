@@ -1,8 +1,13 @@
 #include "../include/Animation.hpp"
 
-Animation::Animation(std::string txtFilepath) : currentSpriteIx(0), delay(10), counter(0)
+Animation::Animation(std::string txtFilepath) : currentSpriteIx(0), delay(10), counter(0), blinking(false)
 {
     changeTexture(txtFilepath);
+}
+
+void Animation::blink()
+{
+    blinking = !blinking;
 }
 
 void Animation::changeTexture(std::string filepath)
@@ -22,6 +27,7 @@ void Animation::changeTexture(std::string filepath)
         temp.setScale(sf::Vector2f(20 / size.width, 20 / size.height));
         clips.push_back(temp);
     }
+    blinking = false;
 }
 
 void Animation::setPosition(float x, float y)
@@ -40,6 +46,13 @@ void Animation::render(Scene *scene, Transform transform)
     {
         counter = 0;
         currentSpriteIx += currentSpriteIx % 2 == 0 ? 1 : -1;
+        if (blinking)
+        {
+            if (clips[currentSpriteIx].getColor() == sf::Color::White)
+                clips[currentSpriteIx].setColor(sf::Color::Black);
+            else
+                clips[currentSpriteIx].setColor(sf::Color::White);
+        }
     }
     setPosition(transform.getX(), transform.getY());
     scene->draw(clips[currentSpriteIx]);
