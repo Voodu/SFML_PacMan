@@ -1,6 +1,6 @@
 #include "../include/Ghost.hpp"
 
-Ghost::Ghost(Transform transform, std::string spritesPath) : MovableObject(transform), animation(spritesPath), invincible(true)
+Ghost::Ghost(Transform transform, std::string spritesPath) : MovableObject(transform), animation(spritesPath), invincible(1)
 {
     layer = 2;
     physical = true;
@@ -63,7 +63,7 @@ void Ghost::render()
 
 void Ghost::onCollision(GameObject *other)
 {
-    if (other->tag == "PacMan" && !invincible)
+    if (other->tag == "PacMan" && invincible < 1)
     {
         scene->removeGameObject(this);
         scene->passMessage(idString + "Spawn", "Respawn");
@@ -76,25 +76,25 @@ void Ghost::parseMessage(std::string message)
     {
         scene->removeGameObject(this);
         scene->passMessage(idString + "Spawn", "Respawn");
-        return;
     }
-    if (message == "PacManBoosted")
+    else if (message == "PacManBoosted")
     {
-        std::cout << "PacManBoosted\n";
         animation.changeTexture("sprites/dead.png");
-        invincible = false;
-        return;
+        setSpeed(1);
+        --invincible;
     }
-    if (message == "BoostVanishing")
+    else if (message == "BoostVanishing" && invincible < 1)
     {
-        std::cout << "BoostVanishing\n";
-        return;
+        animation.blink();
     }
-    if (message == "BoostVanished")
+    else if (message == "BoostVanished" && ++invincible > 0)
     {
-        std::cout << "BoostVanished\n";
         animation.changeTexture("sprites/" + idString + ".png");
-        invincible = true;
-        return;
+        setSpeed(2);
+        invincible = 1;
+    }
+    else
+    {
+        ++invincible;
     }
 }

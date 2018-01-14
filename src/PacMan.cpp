@@ -67,7 +67,7 @@ void PacMan::render()
 
 void PacMan::onCollision(GameObject *other)
 {
-    if (other->tag == "Ghost" && static_cast<Ghost *>(other)->invincible)
+    if (other->tag == "Ghost" && static_cast<Ghost *>(other)->invincible > 0)
     {
         scene->passMessage("LifesText", "LoseLife");
         scene->removeGameObject(this);

@@ -48,7 +48,6 @@ void MovableObject::setSpeed(int value)
 
 void MovableObject::move()
 {
-    std::cout << "moving\n";
     outOfBoundsTeleport();
     moves = true;
     Transform temp;
